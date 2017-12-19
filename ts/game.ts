@@ -1,6 +1,6 @@
 class Game {
     // Attributes
-    private _element: HTMLElement;
+    private _element: HTMLElement = document.getElementById('container');
     private _player: Player;
     private _keeper: Keeper;
     private _ball: Ball;
@@ -13,6 +13,8 @@ class Game {
         this._ball = new Ball('ball', 0, 200);
 
 
+        window.addEventListener('keydown', this.keyDownHandler);
+
         this.draw();
     }
 
@@ -23,16 +25,15 @@ class Game {
     // description
     public draw(): void {
         this._player.draw(this._element);
-        this._scoreboard.draw(this._element);
+        this._ball.draw(this._element);
       }
     // description
     public update() {
         this._player.update();
-        this._scoreboard.update();
+        this._ball.update();
     }
     
     // description
-    public KeyDownHandler(e: KeyboardEvent) {
-
+    public keyDownHandler(e: KeyboardEvent) {
     }
 }

@@ -32,7 +32,6 @@ class GameItem {
         this._element.id = this._name;
         this._element.style.transform = `translate(${this._xPos}px, ${this._yPos}px)`;
 
-        console.log("test");
         // Create image
         const image = document.createElement('img');
         image.src = `./assets/images/${this._name}.png `;
@@ -40,6 +39,7 @@ class GameItem {
         // Append elements
         this._element.appendChild(image);
         container.appendChild(this._element);
+        console.log(this._name + " drawn");
 
     }
     // description
@@ -50,6 +50,5 @@ class GameItem {
     // description
     public update() {
             this._element.style.transform = `translate(${this._xPos}px, ${this._yPos}px)`;
-        }
- 
+    }
 }

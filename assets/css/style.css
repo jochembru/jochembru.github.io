@@ -1,7 +1,42 @@
-/* html {
-    background-color: blue;
+html {
+    box-sizing: border-box;
+    font-size: 10px;
+    height: 100%;
+    background-size: auto 100%;
+    background-position: left top;
+    overflow: hidden;
+  }
+  
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+.player{
+    border: 2px solid red;
+}
+/* Change size image */
+
+.player > img {
+    height: 350px;
+    width: 196px;
 }
 
-h1 {
-    color: red;
-} */
+.ball {
+    border: 2px solid red;
+}
+
+.ball > img {
+    height: 100px;
+    width: 100px;
+    margin-left: 50px;
+}
+
+

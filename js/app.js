@@ -22,11 +22,11 @@ class GameItem {
         this._element.className = this._name;
         this._element.id = this._name;
         this._element.style.transform = `translate(${this._xPos}px, ${this._yPos}px)`;
-        console.log("test");
         const image = document.createElement('img');
         image.src = `./assets/images/${this._name}.png `;
         this._element.appendChild(image);
         container.appendChild(this._element);
+        console.log(this._name + " drawn");
     }
     replace() {
     }
@@ -41,20 +41,22 @@ class Ball extends GameItem {
 }
 class Game {
     constructor() {
+        this._element = document.getElementById('container');
         this._player = new Player('player', 0, 0);
         this._scoreboard = new Scoreboard('scoreboard');
         this._ball = new Ball('ball', 0, 200);
+        window.addEventListener('keydown', this.keyDownHandler);
         this.draw();
     }
     draw() {
         this._player.draw(this._element);
-        this._scoreboard.draw(this._element);
+        this._ball.draw(this._element);
     }
     update() {
         this._player.update();
-        this._scoreboard.update();
+        this._ball.update();
     }
-    KeyDownHandler(e) {
+    keyDownHandler(e) {
     }
 }
 class Keeper extends GameItem {
