@@ -1,9 +1,9 @@
 class GameItem {
     // Attributes
-    private _element: HTMLElement;
-    private _name: String;
-    private _xPos: number;
-    private _yPos: number;
+    protected _element: HTMLElement;
+    protected _name: string;
+    protected _xPos: number;
+    protected _yPos: number;
 
     // Constructor
     constructor(name: string, xPosition: number = 0, yPosition: number = 0) {
@@ -25,10 +25,23 @@ class GameItem {
     // Methods
 
     // description
-    public draw() {
+    public draw(container: HTMLElement): void {
+        // Create a div
+        this._element = document.createElement('div');
+        this._element.className = this._name;
+        this._element.id = this._name;
+        this._element.style.transform = `translate(${this._xPos}px, ${this._yPos}px)`;
+
+        console.log("test");
+        // Create image
+        const image = document.createElement('img');
+        image.src = `./assets/images/${this._name}.png `;
+
+        // Append elements
+        this._element.appendChild(image);
+        container.appendChild(this._element);
 
     }
-
     // description
     public replace() {
         
@@ -36,8 +49,7 @@ class GameItem {
 
     // description
     public update() {
-
-    }
-
+            this._element.style.transform = `translate(${this._xPos}px, ${this._yPos}px)`;
+        }
  
 }

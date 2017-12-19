@@ -6,7 +6,13 @@ class Scoreboard extends GameItem {
     private _scoreGK: number;
 
     // Methods
-
+    
+    //constructor
+    constructor(name: string) {
+        super(name);
+        this._scoreP = 0;
+        this._scoreGK = 0;
+    }
     // description
     public update() {
 
