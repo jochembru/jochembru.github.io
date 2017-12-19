@@ -5,18 +5,6 @@ let app;
     };
     window.addEventListener('load', init);
 })();
-class Ball extends GameItem {
-}
-class Game {
-    constructor() {
-    }
-    draw() {
-    }
-    update() {
-    }
-    KeyDownHandler(e) {
-    }
-}
 class GameItem {
     constructor(name, xPosition = 0, yPosition = 0) {
         this._name = name;
@@ -34,6 +22,18 @@ class GameItem {
     replace() {
     }
     update() {
+    }
+}
+class Ball extends GameItem {
+}
+class Game {
+    constructor() {
+    }
+    draw() {
+    }
+    update() {
+    }
+    KeyDownHandler(e) {
     }
 }
 class Keeper extends GameItem {
