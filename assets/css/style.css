@@ -7,7 +7,7 @@ html {
     overflow: hidden;
     background-image: url("../images/box.jpg");
     background-size: contain;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
   }
   
   *,

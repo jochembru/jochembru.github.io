@@ -28,10 +28,9 @@ class Game {
     public draw(): void {
         this._keeper.draw(this._element);
         this._ball.draw(this._element);
-        this._player.draw(this._element);
-        
-        
-      }
+        this._player.draw(this._element);  
+    }
+
     // description
     public update() {
         this._player.update();
