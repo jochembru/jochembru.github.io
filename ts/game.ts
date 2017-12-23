@@ -12,6 +12,10 @@ class Game {
         this._scoreboard = new Scoreboard('scoreboard'); 
         this._ball = new Ball('ball', 42, 620);
         this._player = new Player('player', -20, 280);
+
+        // Three positions for player.
+
+        // -450, -20 & 550
         
 
 
