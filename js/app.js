@@ -42,10 +42,10 @@ class Ball extends GameItem {
 class Game {
     constructor() {
         this._element = document.getElementById('container');
-        this._keeper = new Keeper("GKPos1", 0, 0);
+        this._keeper = new Keeper("GKPos1", 0, 540);
         this._scoreboard = new Scoreboard('scoreboard');
-        this._ball = new Ball('ball', 0, 200);
-        this._player = new Player('player', 0, 0);
+        this._ball = new Ball('ball', 42, 620);
+        this._player = new Player('player', -20, 280);
         window.addEventListener('keydown', this.keyDownHandler);
         this.draw();
     }
