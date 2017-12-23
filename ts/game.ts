@@ -8,9 +8,11 @@ class Game {
 
     // Constructor
     constructor() {
-        this._player = new Player('player', 0, 0);
+        this._keeper = new Keeper("GKPos1", 0, 0);
         this._scoreboard = new Scoreboard('scoreboard'); 
         this._ball = new Ball('ball', 0, 200);
+        this._player = new Player('player', 0, 0);
+        
 
 
         window.addEventListener('keydown', this.keyDownHandler);
@@ -24,13 +26,17 @@ class Game {
 
     // description
     public draw(): void {
-        this._player.draw(this._element);
+        this._keeper.draw(this._element);
         this._ball.draw(this._element);
+        this._player.draw(this._element);
+        
+        
       }
     // description
     public update() {
         this._player.update();
         this._ball.update();
+        this._keeper.update();
     }
     
     // description

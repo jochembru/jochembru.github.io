@@ -5,6 +5,9 @@ html {
     background-size: auto 100%;
     background-position: left top;
     overflow: hidden;
+    background-image: url("../images/box.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
   }
   
   *,
@@ -21,16 +24,19 @@ html {
 
 .player{
     border: 2px solid red;
+    margin-top: 300px;
 }
-/* Change size image */
+/* Change size image 
+   Player and Keeper : 1,5 */
 
 .player > img {
-    height: 350px;
-    width: 196px;
+    height: 313px; 
+    width: 176px;
 }
 
 .ball {
     border: 2px solid red;
+    margin-top: -150px;
 }
 
 .ball > img {
@@ -38,5 +44,16 @@ html {
     width: 100px;
     margin-left: 50px;
 }
+
+.GKPos1 {
+    border: 2px solid red;
+}
+
+.GKPos1 > img {
+    height: 342px;
+    width: 285;
+}
+
+
 
 
