@@ -15,16 +15,29 @@ class Scoreboard extends GameItem {
     }
 
     // Getters / setters
+
+    /**
+     * Get the score of the player
+     */
     public get scoreP(): number {
         return this._scoreP;
     }
 
+    /**
+     * Get the score of the goalkeeper
+     */
     public get scoreGK(): number {
         return this._scoreGK;
     }
 
 
-    //other methods
+    // Methods
+
+    /**
+     * Draw the scoreboard
+     * @param container - The name of the div where the scoreboard will be placed.
+     * !! DIT NOG EVEN NAKIJKEN
+     */
     public draw(container: HTMLElement): void {
         // Creating the div
         this._element = document.createElement('div');
@@ -55,6 +68,9 @@ class Scoreboard extends GameItem {
         container.appendChild(this._element);
     }
 
+    /**
+     * Update the scoreboard
+     */
     public update(): void {
         const scoreSpanP = (<HTMLElement>this._element.childNodes[0].childNodes[1]);
         scoreSpanP.innerHTML = this._scoreP.toString();
@@ -63,11 +79,16 @@ class Scoreboard extends GameItem {
         scoreSpanGK.innerHTML = this._scoreGK.toString();
     }
 
-    
+    /**
+     * Add 1 to the score of the player
+     */
     public addScoreP() {
         this._scoreP++;
     }
 
+    /**
+     * Add 1 to the score of the goalkeeper
+     */
     public addScoreGK() {
         this._scoreGK++;
     }

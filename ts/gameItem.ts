@@ -6,6 +6,13 @@ class GameItem {
     protected _yPos: number;
 
     // Constructor
+
+    /**
+     * Method to create the GameItem
+     * @param name - The name of the item
+     * @param xPosition - The position horizontally
+     * @param yPosition - The position vertically
+     */
     constructor(name: string, xPosition: number = 0, yPosition: number = 0) {
         this._name = name
         this._xPos = xPosition;
@@ -13,15 +20,11 @@ class GameItem {
     }
 
     /**
-     * Set the x position
+     * Set the x and y position of the game items
      */
     public set xPos(xPosition: number) {
         this._xPos = xPosition;
     }
-
-    /**
-     * Set the y position
-     */
     public set yPos(yPosition: number) {
         this._yPos = yPosition;
     }
@@ -47,7 +50,6 @@ class GameItem {
         this._element.appendChild(image);
         container.appendChild(this._element);
         console.log(this._name + " drawn");
-
     }
 
     /**
@@ -58,18 +60,15 @@ class GameItem {
     }
 
     /**
-     * Move a game item to the left
+     * Move a game item to the left or right
      * @param xPosition - The amount of pixels it will change horizontally
+     * @param yPosition - The amount of pixels it will change vertically
      */
     public left(xPosition: number): void {
         this._xPos -= xPosition;
         this._element.classList.add("moving");
     }
-
-    /**
-     * Move a game item to the right
-     * @param xPosition - The amount of pixels it will change vertically
-     */
+    
     public right(xPosition: number): void {
         this._xPos += xPosition;
         this._element.classList.add("moving");
