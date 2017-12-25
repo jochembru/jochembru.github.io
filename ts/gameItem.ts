@@ -43,12 +43,22 @@ class GameItem {
 
     }
     // description
-    public replace() {
+    // public replace() {
         
-    }
+    // }
 
     // description
     public update() {
             this._element.style.transform = `translate(${this._xPos}px, ${this._yPos}px)`;
+    }
+
+    public left(xPosition: number): void {
+        this._xPos -= xPosition;
+        this._element.classList.add("flying");
+    }
+
+    public right(xPosition: number): void {
+        this._xPos += xPosition;
+        this._element.classList.add("flying");
     }
 }

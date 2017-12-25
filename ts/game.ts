@@ -17,8 +17,6 @@ class Game {
 
         // -450, -20 & 550
         
-
-
         window.addEventListener('keydown', this.keyDownHandler);
 
         this.draw();
@@ -45,6 +43,27 @@ class Game {
     }
     
     // description
-    public keyDownHandler(e: KeyboardEvent) {
+    public keyDownHandler = (e: KeyboardEvent): void => {
+        // left arrow
+        // player & ball 500px to left
+        if(e.keyCode === 37) {
+            this._player.left(500);
+            this._ball.left(500);
+            this._player.update();
+            this._ball.update();
+        }
+
+        // right arrow
+        // player & ball 500px to right
+        else if(e.keyCode === 39) {
+            this._player.right(500);
+            this._ball.right(500);
+            this._player.update();
+            this._ball.update();
+        }
+
+        else {
+            console.log("Unknown key");
+        }
     }
 }

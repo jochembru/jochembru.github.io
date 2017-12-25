@@ -28,10 +28,16 @@ class GameItem {
         container.appendChild(this._element);
         console.log(this._name + " drawn");
     }
-    replace() {
-    }
     update() {
         this._element.style.transform = `translate(${this._xPos}px, ${this._yPos}px)`;
+    }
+    left(xPosition) {
+        this._xPos -= xPosition;
+        this._element.classList.add("flying");
+    }
+    right(xPosition) {
+        this._xPos += xPosition;
+        this._element.classList.add("flying");
     }
 }
 class Ball extends GameItem {
@@ -42,6 +48,23 @@ class Ball extends GameItem {
 class Game {
     constructor() {
         this._element = document.getElementById('container');
+        this.keyDownHandler = (e) => {
+            if (e.keyCode === 37) {
+                this._player.left(500);
+                this._ball.left(500);
+                this._player.update();
+                this._ball.update();
+            }
+            else if (e.keyCode === 39) {
+                this._player.right(500);
+                this._ball.right(500);
+                this._player.update();
+                this._ball.update();
+            }
+            else {
+                console.log("Unknown key");
+            }
+        };
         this._keeper = new Keeper("GKPos1", 0, 540);
         this._scoreboard = new Scoreboard('scoreboard');
         this._ball = new Ball('ball', 42, 620);
@@ -60,8 +83,6 @@ class Game {
         this._ball.update();
         this._keeper.update();
         this._scoreboard.update();
-    }
-    keyDownHandler(e) {
     }
 }
 class Keeper extends GameItem {
