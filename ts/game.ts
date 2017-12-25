@@ -13,20 +13,16 @@ class Game {
         this._ball = new Ball('ball', 62, 620);
         this._player = new Player('player', 0, 280);
 
-        // Three positions for player.
-
-        // -450, -20 & 550
-        
         window.addEventListener('keydown', this.keyDownHandler);
 
         this.draw();
     }
 
-    
-
     // Methods
 
-    // description
+    /**
+     * Method to draw all the game items
+     */
     public draw(): void {
         this._keeper.draw(this._element);
         this._ball.draw(this._element);
@@ -34,7 +30,9 @@ class Game {
         this._scoreboard.draw(this._element);
     }
 
-    // description
+    /**
+     * Method to update all the game items
+     */
     public update() {
         this._player.update();
         this._ball.update();
@@ -42,42 +40,31 @@ class Game {
         this._scoreboard.update();
     }
     
-    // description
+    /**
+     * Events
+     * - Keycode 37 --> left arrow
+     * - Keycode 39 --> right arrow
+     * - Keycode 32 --> spacebar
+     * 
+     * The value between the parentheses
+     * is the amount of pixels.
+     */
     public keyDownHandler = (e: KeyboardEvent): void => {
-        // left arrow
-        // player & ball 500px to left
         if(e.keyCode === 37) {
             this._player.left(330);
-            this._player.update();
-
             this._ball.left(330);
-            this._ball.update();
-        }
-
-        // right arrow
-        // player & ball 500px to right
+        } 
         else if(e.keyCode === 39) {
             this._player.right(330);
-            this._player.update();
-           
-            this._ball.right(330); 
-            this._ball.update();
-        }
-
+            this._ball.right(330);   
+        } 
         else if(e.keyCode === 32) {
             this._ball.shoot(260);
-            this._ball.update();
-
-            // eventually 
-            // this._keeper.randomCorner()
-
-            // test
-            this._keeper.rightDive(250);
-            this._keeper.update();
-        }
-
+            this._keeper.randomCorner(); 
+        } 
         else {
             console.log("Unknown key");
         }
-    }
+        this.update();
+     }
 }

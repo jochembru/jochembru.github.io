@@ -2,31 +2,47 @@ class Keeper extends GameItem {
     // Attributes
 
     // Constructor
-
     constructor(name: string, xPosition: number = 0, yPosition: number = 0) {
         super(name, xPosition, yPosition);
     }
+
     // Methods
 
-    // Make the three directions the keeper can dive to
-    public leftDive(xPosition: number): void {
+
+    /**
+     * Make the three directions the keeper can dive to
+     * @param xPosition - The amount of pixels it will change horizontally
+     */
+    private leftDive(xPosition: number): void {
         this._xPos -= xPosition;
         this._element.classList.add("diving");
     }
 
-    public rightDive(xPosition: number): void {
+    private rightDive(xPosition: number): void {
         this._xPos += xPosition;
         this._element.classList.add("diving");
     }
 
-    public middleDive(xPosition: number): void {
+    private midDive(xPosition: number): void {
         this.xPos = 0;
     } 
 
+    /**
+     * The keeper will dive in a random corner
+     * @var rn - Random number between 0 and 9
+     */
     public randomCorner() {
-            
+        let rn = Math.floor((Math.random() * 9));
+        console.log("Random number: " + rn);
+
+        if(rn === 0 ||  rn === 1 || rn === 2) {
+            this.leftDive(250);
+        } else if(rn === 3 || rn === 4 || rn === 5) {
+            this.rightDive(250)
+        } else {
+            this.midDive(0);
+        }
     }
-    public update() {
-        this._element.style.transform = `translate(${this._xPos}px, ${this._yPos}px)`;
-}
+
+
 }

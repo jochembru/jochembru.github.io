@@ -55,25 +55,20 @@ class Game {
         this.keyDownHandler = (e) => {
             if (e.keyCode === 37) {
                 this._player.left(330);
-                this._player.update();
                 this._ball.left(330);
-                this._ball.update();
             }
             else if (e.keyCode === 39) {
                 this._player.right(330);
-                this._player.update();
                 this._ball.right(330);
-                this._ball.update();
             }
             else if (e.keyCode === 32) {
                 this._ball.shoot(260);
-                this._ball.update();
-                this._keeper.rightDive(250);
-                this._keeper.update();
+                this._keeper.randomCorner();
             }
             else {
                 console.log("Unknown key");
             }
+            this.update();
         };
         this._keeper = new Keeper("GKPos1", 0, 540);
         this._scoreboard = new Scoreboard('scoreboard');
@@ -107,13 +102,21 @@ class Keeper extends GameItem {
         this._xPos += xPosition;
         this._element.classList.add("diving");
     }
-    middleDive(xPosition) {
+    midDive(xPosition) {
         this.xPos = 0;
     }
     randomCorner() {
-    }
-    update() {
-        this._element.style.transform = `translate(${this._xPos}px, ${this._yPos}px)`;
+        let rn = Math.floor((Math.random() * 9));
+        console.log("Random number: " + rn);
+        if (rn === 0 || rn === 1 || rn === 2) {
+            this.leftDive(250);
+        }
+        else if (rn === 3 || rn === 4 || rn === 5) {
+            this.rightDive(250);
+        }
+        else {
+            this.midDive(0);
+        }
     }
 }
 class Player extends GameItem {

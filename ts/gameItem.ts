@@ -12,19 +12,26 @@ class GameItem {
         this._yPos = yPosition;
     }
 
-    // Set the xPos
+    /**
+     * Set the x position
+     */
     public set xPos(xPosition: number) {
         this._xPos = xPosition;
     }
 
-    // Set the yPos
+    /**
+     * Set the y position
+     */
     public set yPos(yPosition: number) {
         this._yPos = yPosition;
     }
 
     // Methods
 
-    // description
+    /**
+     * Method to draw all the game items
+     * @param container - Name of the div
+     */
     public draw(container: HTMLElement): void {
         // Create a div
         this._element = document.createElement('div');
@@ -42,21 +49,27 @@ class GameItem {
         console.log(this._name + " drawn");
 
     }
-    // description
-    // public replace() {
-        
-    // }
 
-    // description
+    /**
+     * Method to update all the game items
+     */
     public update() {
             this._element.style.transform = `translate(${this._xPos}px, ${this._yPos}px)`;
     }
 
+    /**
+     * Move a game item to the left
+     * @param xPosition - The amount of pixels it will change horizontally
+     */
     public left(xPosition: number): void {
         this._xPos -= xPosition;
         this._element.classList.add("moving");
     }
 
+    /**
+     * Move a game item to the right
+     * @param xPosition - The amount of pixels it will change vertically
+     */
     public right(xPosition: number): void {
         this._xPos += xPosition;
         this._element.classList.add("moving");
