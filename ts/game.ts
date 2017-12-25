@@ -10,8 +10,8 @@ class Game {
     constructor() {
         this._keeper = new Keeper("GKPos1", 0, 540);
         this._scoreboard = new Scoreboard('scoreboard'); 
-        this._ball = new Ball('ball', 42, 620);
-        this._player = new Player('player', -20, 280);
+        this._ball = new Ball('ball', 62, 620);
+        this._player = new Player('player', 0, 280);
 
         // Three positions for player.
 
@@ -47,19 +47,33 @@ class Game {
         // left arrow
         // player & ball 500px to left
         if(e.keyCode === 37) {
-            this._player.left(500);
-            this._ball.left(500);
+            this._player.left(330);
             this._player.update();
+
+            this._ball.left(330);
             this._ball.update();
         }
 
         // right arrow
         // player & ball 500px to right
         else if(e.keyCode === 39) {
-            this._player.right(500);
-            this._ball.right(500);
+            this._player.right(330);
             this._player.update();
+           
+            this._ball.right(330); 
             this._ball.update();
+        }
+
+        else if(e.keyCode === 32) {
+            this._ball.shoot(260);
+            this._ball.update();
+
+            // eventually 
+            // this._keeper.randomCorner()
+
+            // test
+            this._keeper.rightDive(250);
+            this._keeper.update();
         }
 
         else {

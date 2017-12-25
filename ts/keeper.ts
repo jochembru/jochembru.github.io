@@ -8,13 +8,25 @@ class Keeper extends GameItem {
     }
     // Methods
 
-    // description
-    public move() {
-
+    // Make the three directions the keeper can dive to
+    public leftDive(xPosition: number): void {
+        this._xPos -= xPosition;
+        this._element.classList.add("diving");
     }
 
-    // description
+    public rightDive(xPosition: number): void {
+        this._xPos += xPosition;
+        this._element.classList.add("diving");
+    }
+
+    public middleDive(xPosition: number): void {
+        this.xPos = 0;
+    } 
+
     public randomCorner() {
             
     }
+    public update() {
+        this._element.style.transform = `translate(${this._xPos}px, ${this._yPos}px)`;
+}
 }

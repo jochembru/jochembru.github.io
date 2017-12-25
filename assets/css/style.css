@@ -57,6 +57,14 @@ html {
     border-bottom-right-radius: 20px;
   }
 
-  .flying{
-    transition: width 1s, height 1s, background-color 2s, transform 1s;  
+  .moving{
+    transition: 1s linear all;
+  }
+
+  .shooting{
+    transition: 1.5s ease all;
+  }
+
+  .diving {
+    transition: 800ms ease all;
   }

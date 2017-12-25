@@ -8,4 +8,8 @@ class Ball extends GameItem {
         super(name, xPosition, yPosition);
     }
     // Methods
+    public shoot(yPosition: number): void {
+        this._yPos -= yPosition;
+        this._element.classList.add("shooting");
+    }
 }

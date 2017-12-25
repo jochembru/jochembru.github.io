@@ -54,11 +54,11 @@ class GameItem {
 
     public left(xPosition: number): void {
         this._xPos -= xPosition;
-        this._element.classList.add("flying");
+        this._element.classList.add("moving");
     }
 
     public right(xPosition: number): void {
         this._xPos += xPosition;
-        this._element.classList.add("flying");
+        this._element.classList.add("moving");
     }
 }

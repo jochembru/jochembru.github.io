@@ -33,16 +33,20 @@ class GameItem {
     }
     left(xPosition) {
         this._xPos -= xPosition;
-        this._element.classList.add("flying");
+        this._element.classList.add("moving");
     }
     right(xPosition) {
         this._xPos += xPosition;
-        this._element.classList.add("flying");
+        this._element.classList.add("moving");
     }
 }
 class Ball extends GameItem {
     constructor(name, xPosition = 0, yPosition = 0) {
         super(name, xPosition, yPosition);
+    }
+    shoot(yPosition) {
+        this._yPos -= yPosition;
+        this._element.classList.add("shooting");
     }
 }
 class Game {
@@ -50,16 +54,22 @@ class Game {
         this._element = document.getElementById('container');
         this.keyDownHandler = (e) => {
             if (e.keyCode === 37) {
-                this._player.left(500);
-                this._ball.left(500);
+                this._player.left(330);
                 this._player.update();
+                this._ball.left(330);
                 this._ball.update();
             }
             else if (e.keyCode === 39) {
-                this._player.right(500);
-                this._ball.right(500);
+                this._player.right(330);
                 this._player.update();
+                this._ball.right(330);
                 this._ball.update();
+            }
+            else if (e.keyCode === 32) {
+                this._ball.shoot(260);
+                this._ball.update();
+                this._keeper.rightDive(250);
+                this._keeper.update();
             }
             else {
                 console.log("Unknown key");
@@ -67,8 +77,8 @@ class Game {
         };
         this._keeper = new Keeper("GKPos1", 0, 540);
         this._scoreboard = new Scoreboard('scoreboard');
-        this._ball = new Ball('ball', 42, 620);
-        this._player = new Player('player', -20, 280);
+        this._ball = new Ball('ball', 62, 620);
+        this._player = new Player('player', 0, 280);
         window.addEventListener('keydown', this.keyDownHandler);
         this.draw();
     }
@@ -89,18 +99,26 @@ class Keeper extends GameItem {
     constructor(name, xPosition = 0, yPosition = 0) {
         super(name, xPosition, yPosition);
     }
-    move() {
+    leftDive(xPosition) {
+        this._xPos -= xPosition;
+        this._element.classList.add("diving");
+    }
+    rightDive(xPosition) {
+        this._xPos += xPosition;
+        this._element.classList.add("diving");
+    }
+    middleDive(xPosition) {
+        this.xPos = 0;
     }
     randomCorner() {
+    }
+    update() {
+        this._element.style.transform = `translate(${this._xPos}px, ${this._yPos}px)`;
     }
 }
 class Player extends GameItem {
     constructor(name, xPosition = 0, yPosition = 0) {
         super(name, xPosition, yPosition);
-    }
-    move() {
-    }
-    shoot() {
     }
 }
 class Scoreboard extends GameItem {
