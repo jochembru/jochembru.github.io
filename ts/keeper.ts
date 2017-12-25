@@ -32,17 +32,15 @@ class Keeper extends GameItem {
      * @var rn - Random number between 0 and 9
      */
     public randomCorner() {
-        let rn = Math.floor((Math.random() * 9));
+        let rn = Math.floor((Math.random() * 3));
         console.log("Random number: " + rn);
 
-        if(rn === 0 ||  rn === 1 || rn === 2) {
+        if(rn === 0) {
             this.leftDive(250);
-        } else if(rn === 3 || rn === 4 || rn === 5) {
+        } else if(rn === 1) {
             this.rightDive(250)
         } else {
             this.midDive(0);
         }
     }
-
-
 }

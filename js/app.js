@@ -65,17 +65,24 @@ class Game {
                 this._ball.shoot(260);
                 this._keeper.randomCorner();
             }
-            else {
-                console.log("Unknown key");
-            }
             this.update();
         };
         this._keeper = new Keeper("GKPos1", 0, 540);
         this._scoreboard = new Scoreboard('scoreboard');
-        this._ball = new Ball('ball', 62, 620);
+        this._ball = new Ball('ball', 110, 620);
         this._player = new Player('player', 0, 280);
         window.addEventListener('keydown', this.keyDownHandler);
         this.draw();
+    }
+    collision() {
+        const gkRect = document.getElementById("GKPos1").getBoundingClientRect();
+        const bRect = document.getElementById("ball").getBoundingClientRect();
+        if (bRect.left - gkRect.left < 200 && bRect.left - gkRect.left > 0 && bRect.top - gkRect.top === 111) {
+            console.log("SAVE!");
+        }
+        else {
+            console.log("GOAL!");
+        }
     }
     draw() {
         this._keeper.draw(this._element);
@@ -88,6 +95,7 @@ class Game {
         this._ball.update();
         this._keeper.update();
         this._scoreboard.update();
+        this.collision();
     }
 }
 class Keeper extends GameItem {
@@ -106,12 +114,12 @@ class Keeper extends GameItem {
         this.xPos = 0;
     }
     randomCorner() {
-        let rn = Math.floor((Math.random() * 9));
+        let rn = Math.floor((Math.random() * 3));
         console.log("Random number: " + rn);
-        if (rn === 0 || rn === 1 || rn === 2) {
+        if (rn === 0) {
             this.leftDive(250);
         }
-        else if (rn === 3 || rn === 4 || rn === 5) {
+        else if (rn === 1) {
             this.rightDive(250);
         }
         else {

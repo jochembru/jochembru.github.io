@@ -10,15 +10,29 @@ class Game {
     constructor() {
         this._keeper = new Keeper("GKPos1", 0, 540);
         this._scoreboard = new Scoreboard('scoreboard'); 
-        this._ball = new Ball('ball', 62, 620);
+        this._ball = new Ball('ball', 110, 620);
         this._player = new Player('player', 0, 280);
 
         window.addEventListener('keydown', this.keyDownHandler);
 
         this.draw();
+
+
     }
 
     // Methods
+
+    public collision () {
+        const gkRect = document.getElementById("GKPos1").getBoundingClientRect();
+        const bRect = document.getElementById("ball").getBoundingClientRect();
+
+
+        if(bRect.left - gkRect.left < 200 && bRect.left - gkRect.left >  0 && bRect.top - gkRect.top === 111) {
+            console.log("SAVE!");
+        } else {
+            console.log("GOAL!");
+        }
+    }
 
     /**
      * Method to draw all the game items
@@ -38,6 +52,7 @@ class Game {
         this._ball.update();
         this._keeper.update();
         this._scoreboard.update();
+        this.collision();
     }
     
     /**
@@ -62,9 +77,14 @@ class Game {
             this._ball.shoot(260);
             this._keeper.randomCorner(); 
         } 
-        else {
-            console.log("Unknown key");
-        }
         this.update();
      }
 }
+
+/**
+ * Delay code:
+*       const delay: number = 1000; // Time in ms
+        setTimeout(function() {
+            console.log("test"); // Your code
+        }, delay);
+ */

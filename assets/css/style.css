@@ -29,20 +29,30 @@ html {
 .player > img {
     height: 361px; 
     width: 203px;
+    
 }
 
-
+.player {
+  border: 2px solid rgba(0, 0, 0, 0);
+}
 
 .ball > img {
     height: 50px;
     width: 50px;
-    margin-left: 50px;
 }
 
+.ball {
+  border: 2px solid rgba(0, 0, 0, 0);
+  width: 25%;
+}
 
 .GKPos1 > img {
     height: 285px;
     width: 237px;
+}
+
+.GKPos1 {
+  border: 2px solid rgba(0, 0, 0, 0);
 }
 
 
@@ -56,7 +66,7 @@ html {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
   }
-
+/* 
   .moving{
     transition: 1s linear all;
   }
@@ -67,4 +77,4 @@ html {
 
   .diving {
     transition: 800ms ease all;
-  }
+  } */
