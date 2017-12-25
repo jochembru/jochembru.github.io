@@ -53,11 +53,13 @@ class Game {
         this._keeper.draw(this._element);
         this._ball.draw(this._element);
         this._player.draw(this._element);
+        this._scoreboard.draw(this._element);
     }
     update() {
         this._player.update();
         this._ball.update();
         this._keeper.update();
+        this._scoreboard.update();
     }
     keyDownHandler(e) {
     }
@@ -86,11 +88,41 @@ class Scoreboard extends GameItem {
         this._scoreP = 0;
         this._scoreGK = 0;
     }
+    get scoreP() {
+        return this._scoreP;
+    }
+    get scoreGK() {
+        return this._scoreGK;
+    }
+    draw(container) {
+        this._element = document.createElement('div');
+        this._element.className = this._name;
+        this._element.id = this._name;
+        const p = document.createElement("p");
+        p.innerHTML = "Player: ";
+        const gk = document.createElement("p");
+        gk.innerHTML = "Keeper: ";
+        const spanP = document.createElement("span");
+        spanP.innerHTML = this._scoreP.toString();
+        const spanGK = document.createElement("span");
+        spanGK.innerHTML = this._scoreGK.toString();
+        p.appendChild(spanP);
+        this._element.appendChild(p);
+        gk.appendChild(spanGK);
+        this._element.appendChild(gk);
+        container.appendChild(this._element);
+    }
     update() {
+        const scoreSpanP = this._element.childNodes[0].childNodes[1];
+        scoreSpanP.innerHTML = this._scoreP.toString();
+        const scoreSpanGK = this._element.childNodes[0].childNodes[1];
+        scoreSpanGK.innerHTML = this._scoreGK.toString();
     }
     addScoreP() {
+        this._scoreP++;
     }
     addScoreGK() {
+        this._scoreGK++;
     }
 }
 //# sourceMappingURL=app.js.map

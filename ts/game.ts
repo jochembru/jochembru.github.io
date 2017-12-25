@@ -33,6 +33,7 @@ class Game {
         this._keeper.draw(this._element);
         this._ball.draw(this._element);
         this._player.draw(this._element);  
+        this._scoreboard.draw(this._element);
     }
 
     // description
@@ -40,6 +41,7 @@ class Game {
         this._player.update();
         this._ball.update();
         this._keeper.update();
+        this._scoreboard.update();
     }
     
     // description
