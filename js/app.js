@@ -54,15 +54,15 @@ class Game {
         this._element = document.getElementById('container');
         this.keyDownHandler = (e) => {
             if (e.keyCode === 37) {
-                this._player.left(330);
-                this._ball.left(330);
+                this._player.left(260);
+                this._ball.left(260);
             }
             else if (e.keyCode === 39) {
-                this._player.right(330);
-                this._ball.right(330);
+                this._player.right(260);
+                this._ball.right(260);
             }
             else if (e.keyCode === 32) {
-                this._ball.shoot(260);
+                this._ball.shoot(300);
                 this._keeper.randomCorner();
             }
             this.update();
@@ -74,19 +74,18 @@ class Game {
         window.addEventListener('keydown', this.keyDownHandler);
         this.draw();
     }
-    collision() {
+    saveOrGoal() {
         const gkRect = document.getElementById("GKPos1").getBoundingClientRect();
         const bRect = document.getElementById("ball").getBoundingClientRect();
-        console.log(gkRect);
-        console.log(bRect);
-        if (bRect.left - gkRect.left < 200 && bRect.left - gkRect.left > 0 && bRect.top - gkRect.top === 111) {
-            console.log("SAVE!");
+        const sumRect = (gkRect.right * gkRect.left) / (bRect.right * bRect.left);
+        if (sumRect < 1 && sumRect > 0.9 && bRect.top != 919) {
+            console.log("Save!");
         }
         else if (bRect.top === 919) {
             console.log("Choosing position..");
         }
         else {
-            console.log("GOAL!");
+            console.log("Goal!");
         }
     }
     draw() {
@@ -100,7 +99,7 @@ class Game {
         this._ball.update();
         this._keeper.update();
         this._scoreboard.update();
-        this.collision();
+        this.saveOrGoal();
     }
 }
 class Keeper extends GameItem {

@@ -22,21 +22,33 @@ class Game {
 
     // Methods
 
-    public collision () {
+
+    /**
+     * See if it is a goal or not.
+     * 
+     * If statement:
+     * If the ball is at the same direction as the goal keeper,
+     * the answer of sumRect will be approximately 0.93. 
+     * 0.93 is less than 1 and more than 0.9. When the player 
+     * hasn't shoot yet, the 'top' of the ball rectangle will be
+     * at a y-position of 919. 
+     * 
+     * @const gkRect - Get the rectangle of the goal keeper
+     * @const bRect - Get the rectangle of the ball
+     * @const sumRect - Sum to see if the ball is at the same direction as the keeper
+     */
+    public saveOrGoal () {
         const gkRect = document.getElementById("GKPos1").getBoundingClientRect();
         const bRect = document.getElementById("ball").getBoundingClientRect();
 
-        console.log(gkRect);
-        console.log(bRect);
+        const sumRect = (gkRect.right * gkRect.left) / (bRect.right * bRect.left);
 
-        if(bRect.left - gkRect.left < 200 && bRect.left - gkRect.left >  0 && bRect.top - gkRect.top === 111) {
-            console.log("SAVE!");
-        } 
-        else if (bRect.top === 919) {
-            console.log("Choosing position..")
-        } 
-        else {
-            console.log("GOAL!");
+        if(sumRect < 1 && sumRect > 0.9 && bRect.top != 919) {
+            console.log("Save!");
+        } else if (bRect.top === 919) {
+            console.log("Choosing position..");
+        } else {
+            console.log("Goal!");
         }
     }
 
@@ -58,7 +70,7 @@ class Game {
         this._ball.update();
         this._keeper.update();
         this._scoreboard.update();
-        this.collision();
+        this.saveOrGoal();
     }
     
     /**
@@ -72,15 +84,15 @@ class Game {
      */
     public keyDownHandler = (e: KeyboardEvent): void => {
         if(e.keyCode === 37) {
-            this._player.left(330);
-            this._ball.left(330);
+            this._player.left(260);
+            this._ball.left(260);
         } 
         else if(e.keyCode === 39) {
-            this._player.right(330);
-            this._ball.right(330);   
+            this._player.right(260);
+            this._ball.right(260);   
         } 
         else if(e.keyCode === 32) {
-            this._ball.shoot(260);
+            this._ball.shoot(300);
             this._keeper.randomCorner(); 
             
         } 
