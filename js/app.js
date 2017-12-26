@@ -77,8 +77,13 @@ class Game {
     collision() {
         const gkRect = document.getElementById("GKPos1").getBoundingClientRect();
         const bRect = document.getElementById("ball").getBoundingClientRect();
+        console.log(gkRect);
+        console.log(bRect);
         if (bRect.left - gkRect.left < 200 && bRect.left - gkRect.left > 0 && bRect.top - gkRect.top === 111) {
             console.log("SAVE!");
+        }
+        else if (bRect.top === 919) {
+            console.log("Choosing position..");
         }
         else {
             console.log("GOAL!");
