@@ -1,0 +1,13 @@
+Links keeper: 332.990
+Midden Keeper: 690.240
+Rechts keeper: 1.172.490
+
+Links bal: 357.901
+Midden bal: 736.981 
+Rechts bal: 1.251.261
+
+const sumRect = (gkRect.right * gk.RectLeft) / (bRect.right * bRect.left)
+
+Links: 0.93 --> sumRect < 1 && sumRect > 0.9   (0.9 > sumRect < 1)
+Midden: 0.93 -->
+Rechts: 0.93 -->

@@ -33,24 +33,37 @@ class Game {
      * hasn't shoot yet, the 'top' of the ball rectangle will be
      * at a y-position of 919. 
      * 
+     * @const delay - The amount of ms it waits
+     * 
+     *  @function setTimeout - This function is necessary. It waits until the
+     * animation of the ball, keeper & player is done. 
+     * 
      * @const gkRect - Get the rectangle of the goal keeper
      * @const bRect - Get the rectangle of the ball
      * @const sumRect - Sum to see if the ball is at the same direction as the keeper
      */
     public saveOrGoal () {
-        const gkRect = document.getElementById("GKPos1").getBoundingClientRect();
-        const bRect = document.getElementById("ball").getBoundingClientRect();
+        const delay: number = 1500; // Time in ms
+        setTimeout(function() {
 
-        const sumRect = (gkRect.right * gkRect.left) / (bRect.right * bRect.left);
+            const gkRect = document.getElementById("GKPos1").getBoundingClientRect();
+            const bRect = document.getElementById("ball").getBoundingClientRect();
+    
+            const sumRect = (gkRect.right * gkRect.left) / (bRect.right * bRect.left);
+    
+            if(sumRect < 1 && sumRect > 0.9 && bRect.top != 919) {
+                console.log("Save!");
+            } 
+            else if (bRect.top === 919) {
+                console.log("Choosing position..");
+            } 
+            else {
+                console.log("Goal!");
+            }
 
-        if(sumRect < 1 && sumRect > 0.9 && bRect.top != 919) {
-            console.log("Save!");
-        } else if (bRect.top === 919) {
-            console.log("Choosing position..");
-        } else {
-            console.log("Goal!");
-        }
+        }, delay);
     }
+
 
     /**
      * Method to draw all the game items
@@ -65,7 +78,7 @@ class Game {
     /**
      * Method to update all the game items
      */
-    public update() {
+    public update1() {
         this._player.update();
         this._ball.update();
         this._keeper.update();
@@ -73,6 +86,11 @@ class Game {
         this.saveOrGoal();
     }
     
+    public update2() {
+        this._player.update();
+        this._ball.update();
+    }
+
     /**
      * Events
      * - Keycode 37 --> left arrow
@@ -94,10 +112,11 @@ class Game {
         else if(e.keyCode === 32) {
             this._ball.shoot(300);
             this._keeper.randomCorner(); 
-            
-        } 
-        this.update();
+            this.update1();          
+        }
+        this.update2();
      }
+
 }
 
 /**

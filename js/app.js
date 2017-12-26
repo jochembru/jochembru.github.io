@@ -64,8 +64,9 @@ class Game {
             else if (e.keyCode === 32) {
                 this._ball.shoot(300);
                 this._keeper.randomCorner();
+                this.update1();
             }
-            this.update();
+            this.update2();
         };
         this._keeper = new Keeper("GKPos1", 0, 540);
         this._scoreboard = new Scoreboard('scoreboard');
@@ -75,18 +76,21 @@ class Game {
         this.draw();
     }
     saveOrGoal() {
-        const gkRect = document.getElementById("GKPos1").getBoundingClientRect();
-        const bRect = document.getElementById("ball").getBoundingClientRect();
-        const sumRect = (gkRect.right * gkRect.left) / (bRect.right * bRect.left);
-        if (sumRect < 1 && sumRect > 0.9 && bRect.top != 919) {
-            console.log("Save!");
-        }
-        else if (bRect.top === 919) {
-            console.log("Choosing position..");
-        }
-        else {
-            console.log("Goal!");
-        }
+        const delay = 1500;
+        setTimeout(function () {
+            const gkRect = document.getElementById("GKPos1").getBoundingClientRect();
+            const bRect = document.getElementById("ball").getBoundingClientRect();
+            const sumRect = (gkRect.right * gkRect.left) / (bRect.right * bRect.left);
+            if (sumRect < 1 && sumRect > 0.9 && bRect.top != 919) {
+                console.log("Save!");
+            }
+            else if (bRect.top === 919) {
+                console.log("Choosing position..");
+            }
+            else {
+                console.log("Goal!");
+            }
+        }, delay);
     }
     draw() {
         this._keeper.draw(this._element);
@@ -94,12 +98,16 @@ class Game {
         this._player.draw(this._element);
         this._scoreboard.draw(this._element);
     }
-    update() {
+    update1() {
         this._player.update();
         this._ball.update();
         this._keeper.update();
         this._scoreboard.update();
         this.saveOrGoal();
+    }
+    update2() {
+        this._player.update();
+        this._ball.update();
     }
 }
 class Keeper extends GameItem {
@@ -172,10 +180,10 @@ class Scoreboard extends GameItem {
         const scoreSpanGK = this._element.childNodes[0].childNodes[1];
         scoreSpanGK.innerHTML = this._scoreGK.toString();
     }
-    addScoreP() {
+    addScoreGK() {
         this._scoreP++;
     }
-    addScoreGK() {
+    addScoreP() {
         this._scoreGK++;
     }
 }

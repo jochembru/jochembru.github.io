@@ -14,7 +14,7 @@ class Scoreboard extends GameItem {
         this._scoreGK = 0;
     }
 
-    // Getters / setters
+    // // Getters / setters
 
     /**
      * Get the score of the player
@@ -82,14 +82,14 @@ class Scoreboard extends GameItem {
     /**
      * Add 1 to the score of the player
      */
-    public addScoreP() {
+    public addScoreGK() {
         this._scoreP++;
     }
 
     /**
      * Add 1 to the score of the goalkeeper
      */
-    public addScoreGK() {
+    public addScoreP() {
         this._scoreGK++;
     }
 }
