@@ -56,24 +56,37 @@ html {
 }
 
 
-#scoreboard {
+#scoreboardP {
     font-size: 30px;
-    background-color: rgba(255, 255, 255, 0.37); 
+    background-color: rgba(255, 255, 255, 0.473); 
     align-items: center;
-    padding: 3px;
+    padding: 10px;
     position: absolute;
-    top: 0;
-    border-bottom-left-radius: 20px;
+    left: 0;
     border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    border: 2px solid red;
+  }
+
+  #scoreboardGK {
+    font-size: 30px;
+    background-color: rgba(255, 255, 255, 0.452); 
+    align-items: center;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    border: 2px solid red;
   }
    .moving{
     transition: 1s linear all;
   }
 
   .shooting{
-    transition: 1.5s ease all;
+    transition: 1000ms ease-in;
   }
 
   .diving {
-    transition: 800ms ease all;
+    transition: 600ms ease all;
   } 

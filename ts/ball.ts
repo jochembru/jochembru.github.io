@@ -13,7 +13,7 @@ class Ball extends GameItem {
      * Moving the ball when the player shoots
      * @param yPosition - The y position of the ball (in the goal)
      */
-    public shoot(yPosition: number): void {
+    public shoot(yPosition: number) : void {
         this._yPos -= yPosition;
         this._element.classList.add("shooting");
     }

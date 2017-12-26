@@ -4,22 +4,24 @@ class Game {
     private _player: Player;
     private _keeper: Keeper;
     private _ball: Ball;
-    private _scoreboard: Scoreboard;
+    private _scoreboardP: ScoreboardP;
+    private _scoreboardGK: ScoreboardGK
 
     // Constructor
     constructor() {
         this._keeper = new Keeper("GKPos1", 0, 540);
-        this._scoreboard = new Scoreboard('scoreboard'); 
+        this._scoreboardP = new ScoreboardP('scoreboardP'); 
+        this._scoreboardGK = new ScoreboardGK('scoreboardGK');
         this._ball = new Ball('ball', 110, 620);
         this._player = new Player('player', 0, 280);
 
-        window.addEventListener('keydown', this.keyDownHandler);
+        window.addEventListener('keyup', this.keyDownHandler);
 
         this.draw();
 
 
     }
-
+    
     // Methods
 
 
@@ -33,35 +35,38 @@ class Game {
      * hasn't shoot yet, the 'top' of the ball rectangle will be
      * at a y-position of 919. 
      * 
-     * @const delay - The amount of ms it waits
-     * 
-     *  @function setTimeout - This function is necessary. It waits until the
+     * @function setTimeout 1 - This function is necessary. It waits until the
      * animation of the ball, keeper & player is done. 
+     * @function setTimeout 2 - A new function. When a player shoots and see
+     * that the goalkeeper is at the same direction where he wants to shoot. 
+     * He can change his direction and it is a goal. Because of this function, 
+     * it will count as a save.
      * 
      * @const gkRect - Get the rectangle of the goal keeper
      * @const bRect - Get the rectangle of the ball
      * @const sumRect - Sum to see if the ball is at the same direction as the keeper
      */
-    public saveOrGoal () {
-        const delay: number = 1500; // Time in ms
-        setTimeout(function() {
-
+    public saveOrGoal (): void {
+        setTimeout( () => {
             const gkRect = document.getElementById("GKPos1").getBoundingClientRect();
             const bRect = document.getElementById("ball").getBoundingClientRect();
-    
+        setTimeout( () => {
             const sumRect = (gkRect.right * gkRect.left) / (bRect.right * bRect.left);
-    
             if(sumRect < 1 && sumRect > 0.9 && bRect.top != 919) {
                 console.log("Save!");
+                this._scoreboardGK.addScoreGK();
+                this._scoreboardGK.update();
             } 
             else if (bRect.top === 919) {
                 console.log("Choosing position..");
             } 
             else {
                 console.log("Goal!");
+                this._scoreboardP.addScoreP();
+                this._scoreboardP.update();
             }
-
-        }, delay);
+        }, 800);
+        }, 600);
     }
 
 
@@ -72,24 +77,19 @@ class Game {
         this._keeper.draw(this._element);
         this._ball.draw(this._element);
         this._player.draw(this._element);  
-        this._scoreboard.draw(this._element);
+        this._scoreboardP.draw(this._element);
+        this._scoreboardGK.draw(this._element);
     }
 
     /**
      * Method to update all the game items
      */
-    public update1() {
+    public update() {
         this._player.update();
         this._ball.update();
         this._keeper.update();
-        this._scoreboard.update();
-        this.saveOrGoal();
     }
     
-    public update2() {
-        this._player.update();
-        this._ball.update();
-    }
 
     /**
      * Events
@@ -111,10 +111,10 @@ class Game {
         } 
         else if(e.keyCode === 32) {
             this._ball.shoot(300);
-            this._keeper.randomCorner(); 
-            this.update1();          
+            this._keeper.randomCorner();       
+            this.saveOrGoal();    
         }
-        this.update2();
+        this.update();
      }
 
 }

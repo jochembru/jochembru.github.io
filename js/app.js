@@ -64,50 +64,51 @@ class Game {
             else if (e.keyCode === 32) {
                 this._ball.shoot(300);
                 this._keeper.randomCorner();
-                this.update1();
+                this.saveOrGoal();
             }
-            this.update2();
+            this.update();
         };
         this._keeper = new Keeper("GKPos1", 0, 540);
-        this._scoreboard = new Scoreboard('scoreboard');
+        this._scoreboardP = new ScoreboardP('scoreboardP');
+        this._scoreboardGK = new ScoreboardGK('scoreboardGK');
         this._ball = new Ball('ball', 110, 620);
         this._player = new Player('player', 0, 280);
-        window.addEventListener('keydown', this.keyDownHandler);
+        window.addEventListener('keyup', this.keyDownHandler);
         this.draw();
     }
     saveOrGoal() {
-        const delay = 1500;
-        setTimeout(function () {
+        setTimeout(() => {
             const gkRect = document.getElementById("GKPos1").getBoundingClientRect();
             const bRect = document.getElementById("ball").getBoundingClientRect();
-            const sumRect = (gkRect.right * gkRect.left) / (bRect.right * bRect.left);
-            if (sumRect < 1 && sumRect > 0.9 && bRect.top != 919) {
-                console.log("Save!");
-            }
-            else if (bRect.top === 919) {
-                console.log("Choosing position..");
-            }
-            else {
-                console.log("Goal!");
-            }
-        }, delay);
+            setTimeout(() => {
+                const sumRect = (gkRect.right * gkRect.left) / (bRect.right * bRect.left);
+                if (sumRect < 1 && sumRect > 0.9 && bRect.top != 919) {
+                    console.log("Save!");
+                    this._scoreboardGK.addScoreGK();
+                    this._scoreboardGK.update();
+                }
+                else if (bRect.top === 919) {
+                    console.log("Choosing position..");
+                }
+                else {
+                    console.log("Goal!");
+                    this._scoreboardP.addScoreP();
+                    this._scoreboardP.update();
+                }
+            }, 800);
+        }, 600);
     }
     draw() {
         this._keeper.draw(this._element);
         this._ball.draw(this._element);
         this._player.draw(this._element);
-        this._scoreboard.draw(this._element);
+        this._scoreboardP.draw(this._element);
+        this._scoreboardGK.draw(this._element);
     }
-    update1() {
+    update() {
         this._player.update();
         this._ball.update();
         this._keeper.update();
-        this._scoreboard.update();
-        this.saveOrGoal();
-    }
-    update2() {
-        this._player.update();
-        this._ball.update();
     }
 }
 class Keeper extends GameItem {
@@ -144,14 +145,10 @@ class Player extends GameItem {
         super(name, xPosition, yPosition);
     }
 }
-class Scoreboard extends GameItem {
+class ScoreboardGK extends GameItem {
     constructor(name) {
         super(name);
-        this._scoreP = 0;
         this._scoreGK = 0;
-    }
-    get scoreP() {
-        return this._scoreP;
     }
     get scoreGK() {
         return this._scoreGK;
@@ -160,31 +157,48 @@ class Scoreboard extends GameItem {
         this._element = document.createElement('div');
         this._element.className = this._name;
         this._element.id = this._name;
-        const p = document.createElement("p");
-        p.innerHTML = "Player: ";
         const gk = document.createElement("p");
         gk.innerHTML = "Keeper: ";
-        const spanP = document.createElement("span");
-        spanP.innerHTML = this._scoreP.toString();
         const spanGK = document.createElement("span");
         spanGK.innerHTML = this._scoreGK.toString();
-        p.appendChild(spanP);
-        this._element.appendChild(p);
         gk.appendChild(spanGK);
         this._element.appendChild(gk);
         container.appendChild(this._element);
     }
     update() {
-        const scoreSpanP = this._element.childNodes[0].childNodes[1];
-        scoreSpanP.innerHTML = this._scoreP.toString();
         const scoreSpanGK = this._element.childNodes[0].childNodes[1];
         scoreSpanGK.innerHTML = this._scoreGK.toString();
     }
     addScoreGK() {
-        this._scoreP++;
+        this._scoreGK += 1;
+    }
+}
+class ScoreboardP extends GameItem {
+    constructor(name) {
+        super(name);
+        this._scoreP = 0;
+    }
+    get scoreP() {
+        return this._scoreP;
+    }
+    draw(container) {
+        this._element = document.createElement('div');
+        this._element.className = this._name;
+        this._element.id = this._name;
+        const p = document.createElement("p");
+        p.innerHTML = "Player: ";
+        const spanP = document.createElement("span");
+        spanP.innerHTML = this._scoreP.toString();
+        p.appendChild(spanP);
+        this._element.appendChild(p);
+        container.appendChild(this._element);
+    }
+    update() {
+        const scoreSpanP = this._element.childNodes[0].childNodes[1];
+        scoreSpanP.innerHTML = this._scoreP.toString();
     }
     addScoreP() {
-        this._scoreGK++;
+        this._scoreP += 1;
     }
 }
 //# sourceMappingURL=app.js.map
