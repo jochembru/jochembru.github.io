@@ -1,12 +1,11 @@
 html {
-    box-sizing: border-box;
-    font-size: 10px;
+    /* box-sizing: border-box; */
     height: 100%;
     background-size: auto 100%;
     background-position: left top;
     overflow: hidden;
     background-image: url("../images/box.jpg");
-    background-size: contain;
+    background-size: contain;  /* Because of this line the game is still a bit playable with console open (90% resolution). */
     background-repeat: repeat-y;
   }
   
@@ -21,41 +20,38 @@ html {
     display: flex;
     justify-content: center;
   }
-/* Change size image 
-   - player: divide by 1,3
-   - keeper : divide by 1,6
-   */
+
+  /* Game item with their images */
+  .ball {
+    border: 2px solid rgba(255, 255, 255, 0);
+    width: 25%;
+  }
+
+  .ball > img {
+    height: 50px;
+    width: 50px;
+}
+
+.goalkeeper {
+  border: 2px solid rgba(0, 4, 255, 0);
+  }
+
+.goalkeeper > img {
+  height: 285px;
+  width: 237px;
+}
 
 .player > img {
     height: 361px; 
     width: 203px;
-    
 }
 
 .player {
   border: 2px solid rgba(255, 0, 0, 0);
 }
 
-.ball > img {
-    height: 50px;
-    width: 50px;
-}
 
-.ball {
-  border: 2px solid rgba(255, 255, 255, 0);
-  width: 25%;
-}
-
-.goalkeeper > img {
-    height: 285px;
-    width: 237px;
-}
-
-.goalkeeper {
-  border: 2px solid rgba(0, 4, 255, 0);
-}
-
-
+/* Scoreboards */
 #scoreboardP {
     font-size: 30px;
     background-color: rgba(255, 255, 255, 0.473); 
@@ -79,6 +75,9 @@ html {
     border-top-left-radius: 20px;
     border: 2px solid red;
   }
+
+  /* Transation classes */
+
    .moving{
     transition: 1s linear all;
   }

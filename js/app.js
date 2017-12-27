@@ -40,19 +40,7 @@ class GameItem {
         this._element.classList.add("moving");
     }
     replaceItem() {
-        let pRect = document.getElementById("player").getBoundingClientRect();
-        if (pRect.left < 700) {
-            console.log(this._name + ' left');
-            this._xPos = 0;
-        }
-        else if (pRect.left > 950) {
-            console.log(this._name + " right");
-            this._xPos = 0;
-        }
-        else {
-            console.log(this._name + " middle");
-            this._xPos = 0;
-        }
+        this._xPos = 0;
     }
 }
 class Ball extends GameItem {
@@ -64,22 +52,8 @@ class Ball extends GameItem {
         this._element.classList.add("shooting");
     }
     replaceB() {
-        let bRect = document.getElementById("ball").getBoundingClientRect();
-        if (bRect.left < 700) {
-            console.log(this._name + " left");
-            this._yPos += 300;
-            this._xPos = 110;
-        }
-        else if (bRect.left > 950) {
-            console.log(this._name + " right");
-            this._yPos += 300;
-            this._xPos = 110;
-        }
-        else {
-            console.log(this._name + " middle");
-            this._yPos += 300;
-            this._xPos = 110;
-        }
+        this._yPos += 300;
+        this._xPos = 110;
     }
 }
 class Game {
@@ -99,9 +73,8 @@ class Game {
                 this._keeper.randomCorner();
                 this.saveOrGoal();
                 setTimeout(() => {
-                    this._ball.replaceB();
                     this.replaceItem();
-                }, 2500);
+                }, 2000);
             }
             this.update();
         };
@@ -152,6 +125,7 @@ class Game {
     replaceItem() {
         this._player.replaceItem();
         this._keeper.replaceItem();
+        this._ball.replaceB();
     }
 }
 class Keeper extends GameItem {

@@ -22,21 +22,7 @@ class Ball extends GameItem {
      * Description
      */
     public replaceB() {
-        let bRect = document.getElementById("ball").getBoundingClientRect();
-        if(bRect.left < 700) {
-            console.log(this._name + " left")
-            this._yPos += 300;
-            this._xPos = 110
-        }
-        else if (bRect.left > 950) {
-            console.log(this._name + " right");
-            this._yPos += 300;
-            this._xPos = 110;
-        }
-        else {
-            console.log(this._name + " middle");
             this._yPos += 300;
             this._xPos = 110;
         }
     }
-}

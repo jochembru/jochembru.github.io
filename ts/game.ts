@@ -98,6 +98,7 @@ class Game {
     public replaceItem(): void {
         this._player.replaceItem();
         this._keeper.replaceItem();
+        this._ball.replaceB();
     }
     
     /**
@@ -123,9 +124,8 @@ class Game {
             this._keeper.randomCorner();       
             this.saveOrGoal();  
             setTimeout( () => {
-                this._ball.replaceB();
                 this.replaceItem();
-            }, 2500);  
+            }, 2000);  
         }
         this.update();
      }
