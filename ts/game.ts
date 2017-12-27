@@ -90,7 +90,6 @@ class Game {
         this._keeper.update();
     }
     
-
     /**
      * Events
      * - Keycode 37 --> left arrow
@@ -112,17 +111,22 @@ class Game {
         else if(e.keyCode === 32) {
             this._ball.shoot(300);
             this._keeper.randomCorner();       
-            this.saveOrGoal();    
+            this.saveOrGoal();  
+            setTimeout( () => {
+                this._ball.resetMethodB();
+                this._player.resetMethodP();
+                this._keeper.resetMethodK();
+            }, 2500);  
         }
         this.update();
      }
+
 
 }
 
 /**
  * Delay code:
-*       const delay: number = 1000; // Time in ms
-        setTimeout(function() {
-            console.log("test"); // Your code
-        }, delay);
+*       setTimeout( () => {
+        // your code
+        }, 1000); // in ms
  */

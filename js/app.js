@@ -48,6 +48,23 @@ class Ball extends GameItem {
         this._yPos -= yPosition;
         this._element.classList.add("shooting");
     }
+    resetMethodB() {
+        let bRect = document.getElementById("ball").getBoundingClientRect();
+        if (bRect.left < 700) {
+            console.log("Ball left");
+            this._yPos += 300;
+            this._xPos += 260;
+        }
+        else if (bRect.left > 950) {
+            console.log("Ball right");
+            this._yPos += 300;
+            this._xPos -= 260;
+        }
+        else {
+            console.log("Ball middle");
+            this._yPos += 300;
+        }
+    }
 }
 class Game {
     constructor() {
@@ -65,6 +82,11 @@ class Game {
                 this._ball.shoot(300);
                 this._keeper.randomCorner();
                 this.saveOrGoal();
+                setTimeout(() => {
+                    this._ball.resetMethodB();
+                    this._player.resetMethodP();
+                    this._keeper.resetMethodK();
+                }, 2500);
             }
             this.update();
         };
@@ -139,10 +161,38 @@ class Keeper extends GameItem {
             this.midDive(0);
         }
     }
+    resetMethodK() {
+        let gkRect = document.getElementById("GKPos1").getBoundingClientRect();
+        if (gkRect.left < 700) {
+            console.log("Keeper left");
+            this._xPos += 260;
+        }
+        else if (gkRect.left > 950) {
+            console.log("Keeper right");
+            this._xPos -= 260;
+        }
+        else {
+            console.log("Keeper middle");
+        }
+    }
 }
 class Player extends GameItem {
     constructor(name, xPosition = 0, yPosition = 0) {
         super(name, xPosition, yPosition);
+    }
+    resetMethodP() {
+        let pRect = document.getElementById("player").getBoundingClientRect();
+        if (pRect.left < 700) {
+            console.log("Player left");
+            this._xPos += 260;
+        }
+        else if (pRect.left > 950) {
+            console.log("Player right");
+            this._xPos -= 260;
+        }
+        else {
+            console.log("Player middle");
+        }
     }
 }
 class ScoreboardGK extends GameItem {
