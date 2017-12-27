@@ -68,9 +68,9 @@ class ScoreboardP extends GameItem {
         this._scoreP+=1;
         if(this._scoreP >= 5) {
             setTimeout( () => {
-                alert('you won');
+                alert("Congratulations you've won!\nClick OK to restart the game.");
+                location.reload();
             }, 1000);
-            
         }
     }
 }

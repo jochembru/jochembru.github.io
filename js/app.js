@@ -216,15 +216,10 @@ class ScoreboardGK extends GameItem {
         this._scoreGK += 1;
         if (this._scoreGK >= 5) {
             setTimeout(() => {
-                alert('you lost');
+                alert("You've lost!\nClick OK to restart the game.");
+                location.reload();
             }, 1000);
         }
-    }
-    addScoreGKMiss() {
-        this._scoreGK += 1;
-        setTimeout(() => {
-            alert("You missed, this means that you instantly lost! \nClick OK to restart the game.");
-        }, 1000);
     }
 }
 class ScoreboardP extends GameItem {
@@ -255,7 +250,8 @@ class ScoreboardP extends GameItem {
         this._scoreP += 1;
         if (this._scoreP >= 5) {
             setTimeout(() => {
-                alert('you won');
+                alert("Congratulations you've won!\nClick OK to restart the game.");
+                location.reload();
             }, 1000);
         }
     }
