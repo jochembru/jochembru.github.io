@@ -39,6 +39,21 @@ class GameItem {
         this._xPos += xPosition;
         this._element.classList.add("moving");
     }
+    replaceItem() {
+        let pRect = document.getElementById("player").getBoundingClientRect();
+        if (pRect.left < 700) {
+            console.log(this._name + ' left');
+            this._xPos = 0;
+        }
+        else if (pRect.left > 950) {
+            console.log(this._name + " right");
+            this._xPos = 0;
+        }
+        else {
+            console.log(this._name + " middle");
+            this._xPos = 0;
+        }
+    }
 }
 class Ball extends GameItem {
     constructor(name, xPosition = 0, yPosition = 0) {
@@ -48,21 +63,22 @@ class Ball extends GameItem {
         this._yPos -= yPosition;
         this._element.classList.add("shooting");
     }
-    resetMethodB() {
+    replaceB() {
         let bRect = document.getElementById("ball").getBoundingClientRect();
         if (bRect.left < 700) {
-            console.log("Ball left");
+            console.log(this._name + " left");
             this._yPos += 300;
-            this._xPos += 260;
+            this._xPos = 110;
         }
         else if (bRect.left > 950) {
-            console.log("Ball right");
+            console.log(this._name + " right");
             this._yPos += 300;
-            this._xPos -= 260;
+            this._xPos = 110;
         }
         else {
-            console.log("Ball middle");
+            console.log(this._name + " middle");
             this._yPos += 300;
+            this._xPos = 110;
         }
     }
 }
@@ -83,14 +99,13 @@ class Game {
                 this._keeper.randomCorner();
                 this.saveOrGoal();
                 setTimeout(() => {
-                    this._ball.resetMethodB();
-                    this._player.resetMethodP();
-                    this._keeper.resetMethodK();
+                    this._ball.replaceB();
+                    this.replaceItem();
                 }, 2500);
             }
             this.update();
         };
-        this._keeper = new Keeper("GKPos1", 0, 540);
+        this._keeper = new Keeper("goalkeeper", 0, 540);
         this._scoreboardP = new ScoreboardP('scoreboardP');
         this._scoreboardGK = new ScoreboardGK('scoreboardGK');
         this._ball = new Ball('ball', 110, 620);
@@ -100,7 +115,7 @@ class Game {
     }
     saveOrGoal() {
         setTimeout(() => {
-            const gkRect = document.getElementById("GKPos1").getBoundingClientRect();
+            const gkRect = document.getElementById("goalkeeper").getBoundingClientRect();
             const bRect = document.getElementById("ball").getBoundingClientRect();
             setTimeout(() => {
                 const sumRect = (gkRect.right * gkRect.left) / (bRect.right * bRect.left);
@@ -109,8 +124,10 @@ class Game {
                     this._scoreboardGK.addScoreGK();
                     this._scoreboardGK.update();
                 }
-                else if (bRect.top === 919) {
-                    console.log("Choosing position..");
+                else if (bRect.left < 500 || bRect.left > 1300 || bRect.top < 500) {
+                    console.log("Miss!");
+                    this._scoreboardGK.addScoreGK();
+                    this._scoreboardGK.update();
                 }
                 else {
                     console.log("Goal!");
@@ -131,6 +148,10 @@ class Game {
         this._player.update();
         this._ball.update();
         this._keeper.update();
+    }
+    replaceItem() {
+        this._player.replaceItem();
+        this._keeper.replaceItem();
     }
 }
 class Keeper extends GameItem {
@@ -161,38 +182,10 @@ class Keeper extends GameItem {
             this.midDive(0);
         }
     }
-    resetMethodK() {
-        let gkRect = document.getElementById("GKPos1").getBoundingClientRect();
-        if (gkRect.left < 700) {
-            console.log("Keeper left");
-            this._xPos += 260;
-        }
-        else if (gkRect.left > 950) {
-            console.log("Keeper right");
-            this._xPos -= 260;
-        }
-        else {
-            console.log("Keeper middle");
-        }
-    }
 }
 class Player extends GameItem {
     constructor(name, xPosition = 0, yPosition = 0) {
         super(name, xPosition, yPosition);
-    }
-    resetMethodP() {
-        let pRect = document.getElementById("player").getBoundingClientRect();
-        if (pRect.left < 700) {
-            console.log("Player left");
-            this._xPos += 260;
-        }
-        else if (pRect.left > 950) {
-            console.log("Player right");
-            this._xPos -= 260;
-        }
-        else {
-            console.log("Player middle");
-        }
     }
 }
 class ScoreboardGK extends GameItem {
@@ -226,6 +219,12 @@ class ScoreboardGK extends GameItem {
                 alert('you lost');
             }, 1000);
         }
+    }
+    addScoreGKMiss() {
+        this._scoreGK += 1;
+        setTimeout(() => {
+            alert("You missed, this means that you instantly lost! \nClick OK to restart the game.");
+        }, 1000);
     }
 }
 class ScoreboardP extends GameItem {

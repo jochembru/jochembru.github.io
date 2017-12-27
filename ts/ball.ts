@@ -18,27 +18,25 @@ class Ball extends GameItem {
         this._element.classList.add("shooting");
     }
 
-        /**
-     * Als xpos van speler / keeper 'links' is, dan 260(x) terug + bal 300(y) terug
-     * Als xpos van speler / keeper 'rechts' is, dan 260(x) terug + bal 300(y) terug
-     * Als xpos van speler / keeper  midden is, dan alleen bal 300(y) terug
+    /**
+     * Description
      */
-
-    public resetMethodB() {
+    public replaceB() {
         let bRect = document.getElementById("ball").getBoundingClientRect();
         if(bRect.left < 700) {
-            console.log("Ball left")
+            console.log(this._name + " left")
             this._yPos += 300;
-            this._xPos += 260;
+            this._xPos = 110
         }
         else if (bRect.left > 950) {
-            console.log("Ball right");
+            console.log(this._name + " right");
             this._yPos += 300;
-            this._xPos -= 260;
+            this._xPos = 110;
         }
         else {
-            console.log("Ball middle");
+            console.log(this._name + " middle");
             this._yPos += 300;
+            this._xPos = 110;
         }
     }
 }

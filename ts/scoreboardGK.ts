@@ -70,7 +70,18 @@ class ScoreboardGK extends GameItem {
             setTimeout( () => {
                 alert('you lost');
             }, 1000); // in ms
-            
         }
+    }
+
+    /**
+     * There are still some bugs in the game. For example:
+     * when you miss. Fixed it with an alert. After clicking
+     * OK the game will restart.
+     */
+    public addScoreGKMiss() {
+        this._scoreGK+=1;
+        setTimeout( () => {
+            alert("You missed, this means that you instantly lost! \nClick OK to restart the game.");
+        }, 1000); // in ms
     }
 }

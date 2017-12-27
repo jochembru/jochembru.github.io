@@ -73,4 +73,20 @@ class GameItem {
         this._xPos += xPosition;
         this._element.classList.add("moving");
     }
+
+    public replaceItem() {
+        let pRect = document.getElementById("player").getBoundingClientRect();
+        if(pRect.left < 700) {
+            console.log(this._name + ' left')
+            this._xPos = 0;
+        }
+        else if (pRect.left > 950) {
+            console.log(this._name + " right");
+            this._xPos = 0;
+        }
+        else {
+            console.log(this._name + " middle");
+            this._xPos = 0;
+        }
+    }
 }

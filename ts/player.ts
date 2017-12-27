@@ -7,26 +7,24 @@ class Player extends GameItem {
     }
     // Methods
 
-          /**
-     * Als xpos van speler / keeper 'links' is, dan 260(x) terug + bal 300(y) terug
-     * Als xpos van speler / keeper 'rechts' is, dan 260(x) terug + bal 300(y) terug
-     * Als xpos van speler / keeper  midden is, dan alleen bal 300(y) terug
+    /**
+     * Description.
      */
 
-    public resetMethodP() {
-        let pRect = document.getElementById("player").getBoundingClientRect();
-
-        if(pRect.left < 700) {
-            console.log("Player left")
-            this._xPos += 260;
-        }
-        else if (pRect.left > 950) {
-            console.log("Player right");
-            this._xPos -= 260;
-        }
-        else {
-            console.log("Player middle");
-        }
-    }
+    // public resetMethodP() {
+    //     let pRect = document.getElementById("player").getBoundingClientRect();
+    //     if(pRect.left < 700) {
+    //         console.log(this._name + ' left')
+    //         this._xPos = 0;
+    //     }
+    //     else if (pRect.left > 950) {
+    //         console.log("Player right");
+    //         this._xPos = 0;
+    //     }
+    //     else {
+    //         console.log("Player middle");
+    //         this._xPos = 0;
+    //     }
+    // }
 
 }

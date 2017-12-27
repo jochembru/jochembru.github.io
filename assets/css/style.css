@@ -46,12 +46,12 @@ html {
   width: 25%;
 }
 
-.GKPos1 > img {
+.goalkeeper > img {
     height: 285px;
     width: 237px;
 }
 
-.GKPos1 {
+.goalkeeper {
   border: 2px solid rgba(0, 4, 255, 0);
 }
 

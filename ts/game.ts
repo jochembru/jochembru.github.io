@@ -9,7 +9,7 @@ class Game {
 
     // Constructor
     constructor() {
-        this._keeper = new Keeper("GKPos1", 0, 540);
+        this._keeper = new Keeper("goalkeeper", 0, 540);
         this._scoreboardP = new ScoreboardP('scoreboardP'); 
         this._scoreboardGK = new ScoreboardGK('scoreboardGK');
         this._ball = new Ball('ball', 110, 620);
@@ -48,8 +48,10 @@ class Game {
      */
     public saveOrGoal (): void {
         setTimeout( () => {
-            const gkRect = document.getElementById("GKPos1").getBoundingClientRect();
+            const gkRect = document.getElementById("goalkeeper").getBoundingClientRect();
             const bRect = document.getElementById("ball").getBoundingClientRect();
+
+            // console.log(bRect);
         setTimeout( () => {
             const sumRect = (gkRect.right * gkRect.left) / (bRect.right * bRect.left);
             if(sumRect < 1 && sumRect > 0.9 && bRect.top != 919) {
@@ -57,8 +59,11 @@ class Game {
                 this._scoreboardGK.addScoreGK();
                 this._scoreboardGK.update();
             } 
-            else if (bRect.top === 919) {
-                console.log("Choosing position..");
+            else if (bRect.left < 500 || bRect.left > 1300 || bRect.top < 500) {
+                console.log("Miss!");
+                // this._scoreboardGK.addScoreGKMiss();
+                this._scoreboardGK.addScoreGK();
+                this._scoreboardGK.update();
             } 
             else {
                 console.log("Goal!");
@@ -84,10 +89,15 @@ class Game {
     /**
      * Method to update all the game items
      */
-    public update() {
+    public update(): void {
         this._player.update();
         this._ball.update();
         this._keeper.update();
+    }
+
+    public replaceItem(): void {
+        this._player.replaceItem();
+        this._keeper.replaceItem();
     }
     
     /**
@@ -113,9 +123,8 @@ class Game {
             this._keeper.randomCorner();       
             this.saveOrGoal();  
             setTimeout( () => {
-                this._ball.resetMethodB();
-                this._player.resetMethodP();
-                this._keeper.resetMethodK();
+                this._ball.replaceB();
+                this.replaceItem();
             }, 2500);  
         }
         this.update();

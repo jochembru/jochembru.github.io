@@ -50,19 +50,20 @@ class Keeper extends GameItem {
      * Als xpos van speler / keeper  midden is, dan alleen bal 300(y) terug
      */
 
-    public resetMethodK() {
-        let gkRect = document.getElementById("GKPos1").getBoundingClientRect();
+    // public resetMethodK() {
+    //     let gkRect = document.getElementById("GKPos1").getBoundingClientRect();
 
-        if(gkRect.left < 700) {
-            console.log("Keeper left")
-            this._xPos += 260;
-        }
-        else if (gkRect.left > 950) {
-            console.log("Keeper right");
-            this._xPos -= 260;
-        }
-        else  {
-            console.log("Keeper middle");
-        }
-    }
+    //     if(gkRect.left < 700) {
+    //         console.log("Keeper left")
+    //         this._xPos = 0;
+    //     }
+    //     else if (gkRect.left > 950) {
+    //         console.log("Keeper right");
+    //         this._xPos = 0;
+    //     }
+    //     else  {
+    //         console.log("Keeper middle");
+    //         this._xPos = 0;
+    //     }
+    // }
 }
