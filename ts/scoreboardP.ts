@@ -66,5 +66,11 @@ class ScoreboardP extends GameItem {
      */
     public addScoreP() {
         this._scoreP+=1;
+        if(this._scoreP >= 5) {
+            setTimeout( () => {
+                alert('you won');
+            }, 1000);
+            
+        }
     }
 }

@@ -61,14 +61,16 @@ class ScoreboardGK extends GameItem {
     }
 
     /**
-     * Add 1 to the score of the player
-     */
-
-    /**
      * Add 1 to the score of the goalkeeper
      */
 
     public addScoreGK() {
         this._scoreGK+=1;
+        if(this._scoreGK >= 5) {
+            setTimeout( () => {
+                alert('you lost');
+            }, 1000); // in ms
+            
+        }
     }
 }

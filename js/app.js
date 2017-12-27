@@ -221,6 +221,11 @@ class ScoreboardGK extends GameItem {
     }
     addScoreGK() {
         this._scoreGK += 1;
+        if (this._scoreGK >= 5) {
+            setTimeout(() => {
+                alert('you lost');
+            }, 1000);
+        }
     }
 }
 class ScoreboardP extends GameItem {
@@ -249,6 +254,11 @@ class ScoreboardP extends GameItem {
     }
     addScoreP() {
         this._scoreP += 1;
+        if (this._scoreP >= 5) {
+            setTimeout(() => {
+                alert('you won');
+            }, 1000);
+        }
     }
 }
 //# sourceMappingURL=app.js.map
