@@ -5,7 +5,7 @@ class Game {
     private _keeper: Keeper;
     private _ball: Ball;
     private _scoreboardP: ScoreboardP;
-    private _scoreboardGK: ScoreboardGK
+    private _scoreboardGK: ScoreboardGK:
 
     // Constructor
     constructor() {
