@@ -49,11 +49,14 @@ class Ball extends GameItem {
     }
     shoot(yPosition) {
         this._yPos -= yPosition;
+        this._element.classList.remove("moving");
         this._element.classList.add("shooting");
     }
     replaceB() {
         this._yPos += 300;
         this._xPos = 110;
+        this._element.classList.remove("shooting");
+        this._element.classList.add("moving");
     }
 }
 class Game {
@@ -84,6 +87,7 @@ class Game {
         this._ball = new Ball('ball', 110, 620);
         this._player = new Player('player', 0, 280);
         window.addEventListener('keyup', this.keyDownHandler);
+        document.addEventListener("click", this.printMousePos);
         this.draw();
     }
     saveOrGoal() {

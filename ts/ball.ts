@@ -15,6 +15,7 @@ class Ball extends GameItem {
      */
     public shoot(yPosition: number) : void {
         this._yPos -= yPosition;
+        this._element.classList.remove("moving");
         this._element.classList.add("shooting");
     }
 
@@ -24,5 +25,7 @@ class Ball extends GameItem {
     public replaceB() {
             this._yPos += 300;
             this._xPos = 110;
+            this._element.classList.remove("shooting");
+            this._element.classList.add("moving")
         }
     }

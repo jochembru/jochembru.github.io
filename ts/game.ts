@@ -16,6 +16,7 @@ class Game {
         this._player = new Player('player', 0, 280);
 
         window.addEventListener('keyup', this.keyDownHandler);
+        document.addEventListener("click", this.printMousePos);
 
         this.draw();
 
@@ -130,7 +131,26 @@ class Game {
         this.update();
      }
 
+    /**
+     * Tests with audio after a goal
+     */
+    //  public goalAudio()  {
+    //      let audioGoal = (<HTMLAudioElement>document.getElementById("goalAudio"));
+    //      console.log(audioGoal);
+    //      audioGoal.play();
+    //  }
 
+    //  public goalAudio2() {
+    //     let audioGoal: HTMLAudioElement = document.getElementById("goalAudio"));
+    //     console.log(audioGoal);
+    //     audioGoal.play();
+    //  }
+
+    //  public goalAudio3() {
+    //     let audioGoal = (<HTMLElement>document.getElementById("goalAudio"));
+    //     console.log(audioGoal);
+    //     audioGoal.play();
+    //  }
 }
 
 /**

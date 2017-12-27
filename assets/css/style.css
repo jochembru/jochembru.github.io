@@ -74,14 +74,17 @@ html {
 
   /* Transation classes */
 
-   .moving{
+   .moving {
     transition: 1s linear all;
   }
 
-  .shooting{
-    transition: 1000ms ease-in;
+  .shooting {
+    transition: 1s ease-in;
   }
 
   .diving {
     transition: 600ms ease all;
   } 
+
+
+  }
