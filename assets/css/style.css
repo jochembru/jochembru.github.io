@@ -1,12 +1,8 @@
 html {
-    /* box-sizing: border-box; */
     height: 100%;
-    background-size: auto 100%;
-    background-position: left top;
     overflow: hidden;
     background-image: url("../images/box.jpg");
     background-size: contain;  /* Because of this line the game is still a bit playable with console open (90% resolution). */
-    background-repeat: repeat-y;
   }
   
   *,
