@@ -22,10 +22,13 @@ class Ball extends GameItem {
     /**
      * Description
      */
-    public replaceB() {
+    public replaceB(): void {
+        setTimeout( () => {
             this._yPos += 300;
             this._xPos = 110;
             this._element.classList.remove("shooting");
             this._element.classList.add("moving")
+            }, 2000);
+
         }
     }

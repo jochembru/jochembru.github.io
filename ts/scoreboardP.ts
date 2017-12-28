@@ -64,11 +64,11 @@ class ScoreboardP extends GameItem {
     /**
      * Add 1 to the score of the goalkeeper
      */
-    public addScoreP() {
+    public addScoreP(): void {
         this._scoreP+=1;
         if(this._scoreP >= 5) {
             setTimeout( () => {
-                alert("Congratulations you've won!\nClick OK to restart the game.");
+                alert("Gefeliciteerd, je hebt gewonnen!\nKlik op OK om je score te verbeteren!");
                 location.reload();
             }, 1000);
         }

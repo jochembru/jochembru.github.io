@@ -8,7 +8,7 @@ class GameItem {
     // Constructor
 
     /**
-     * Method to create the GameItem
+     * Constructor to create the GameItem
      * @param name - The name of the item
      * @param xPosition - The position horizontally
      * @param yPosition - The position vertically
@@ -55,7 +55,7 @@ class GameItem {
     /**
      * Method to update all the game items
      */
-    public update() {
+    public update(): void {
             this._element.style.transform = `translate(${this._xPos}px, ${this._yPos}px)`;
     }
 
@@ -74,6 +74,9 @@ class GameItem {
         this._element.classList.add("moving");
     }
 
-    public replaceItem() {
+    public replaceItem(): void {
+        setTimeout( () => {
         this._xPos = 0;
+        }, 2000);
+}
 }

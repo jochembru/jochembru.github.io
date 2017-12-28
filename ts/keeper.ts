@@ -8,7 +8,6 @@ class Keeper extends GameItem {
 
     // Methods
 
-
     /**
      * Make the three directions the keeper can dive to
      * @param xPosition - The amount of pixels it will change horizontally
@@ -29,9 +28,9 @@ class Keeper extends GameItem {
 
     /**
      * The keeper will dive in a random corner
-     * @var rn - Random number between 0 and 9
+     * @var rn - Random number between 0 and 2
      */
-    public randomCorner() {
+    public randomCorner(): void {
         let rn = Math.floor((Math.random() * 3));
         console.log("Random number: " + rn);
 

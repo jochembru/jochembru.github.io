@@ -2,6 +2,9 @@ let app;
 (function () {
     let init = function () {
         app = new Game();
+        setTimeout(() => {
+            alert('Welkom bij mijn spel. Het doel van het spel is om eerder dan de keeper vijf punten te halen. \n\nControls: \n- Beweeg door middel van de pijltjes toetsen. \n- Schiet door middel van de spatiebalk. \n- Gebruik vervolgens na het schieten het pijltje naar beneden om opnieuw te schieten. \n \n Veel plezier!');
+        }, 1000);
     };
     window.addEventListener('load', init);
 })();
@@ -40,7 +43,9 @@ class GameItem {
         this._element.classList.add("moving");
     }
     replaceItem() {
-        this._xPos = 0;
+        setTimeout(() => {
+            this._xPos = 0;
+        }, 2000);
     }
 }
 class Ball extends GameItem {
@@ -53,10 +58,12 @@ class Ball extends GameItem {
         this._element.classList.add("shooting");
     }
     replaceB() {
-        this._yPos += 300;
-        this._xPos = 110;
-        this._element.classList.remove("shooting");
-        this._element.classList.add("moving");
+        setTimeout(() => {
+            this._yPos += 300;
+            this._xPos = 110;
+            this._element.classList.remove("shooting");
+            this._element.classList.add("moving");
+        }, 2000);
     }
 }
 class Game {
@@ -75,9 +82,7 @@ class Game {
                 this._ball.shoot(300);
                 this._keeper.randomCorner();
                 this.saveOrGoal();
-                setTimeout(() => {
-                    this.replaceItem();
-                }, 2000);
+                this.replaceItem();
             }
             this.update();
         };
@@ -85,9 +90,8 @@ class Game {
         this._scoreboardP = new ScoreboardP('scoreboardP');
         this._scoreboardGK = new ScoreboardGK('scoreboardGK');
         this._ball = new Ball('ball', 110, 620);
-        this._player = new Player('player', 0, 280);
+        this._player = new GameItem('player', 0, 280);
         window.addEventListener('keyup', this.keyDownHandler);
-        document.addEventListener("click", this.printMousePos);
         this.draw();
     }
     saveOrGoal() {
@@ -161,11 +165,6 @@ class Keeper extends GameItem {
         }
     }
 }
-class Player extends GameItem {
-    constructor(name, xPosition = 0, yPosition = 0) {
-        super(name, xPosition, yPosition);
-    }
-}
 class ScoreboardGK extends GameItem {
     constructor(name) {
         super(name);
@@ -194,7 +193,7 @@ class ScoreboardGK extends GameItem {
         this._scoreGK += 1;
         if (this._scoreGK >= 5) {
             setTimeout(() => {
-                alert("You've lost!\nClick OK to restart the game.");
+                alert("Jammer, je hebt verloren! \nKlik op OK om het opnieuw te proberen!");
                 location.reload();
             }, 1000);
         }
@@ -228,7 +227,7 @@ class ScoreboardP extends GameItem {
         this._scoreP += 1;
         if (this._scoreP >= 5) {
             setTimeout(() => {
-                alert("Congratulations you've won!\nClick OK to restart the game.");
+                alert("Gefeliciteerd, je hebt gewonnen!\nKlik op OK om je score te verbeteren!");
                 location.reload();
             }, 1000);
         }

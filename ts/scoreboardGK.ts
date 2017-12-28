@@ -64,11 +64,11 @@ class ScoreboardGK extends GameItem {
      * Add 1 to the score of the goalkeeper
      */
 
-    public addScoreGK() {
+    public addScoreGK(): void {
         this._scoreGK+=1;
         if(this._scoreGK >= 5) {
             setTimeout( () => {
-                alert("You've lost!\nClick OK to restart the game.");
+                alert("Jammer, je hebt verloren! \nKlik op OK om het opnieuw te proberen!");
                 location.reload();
             }, 1000);
         }

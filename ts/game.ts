@@ -1,11 +1,11 @@
 class Game {
     // Attributes
     private _element: HTMLElement = document.getElementById('container');
-    private _player: Player;
+    private _player: GameItem;
     private _keeper: Keeper;
     private _ball: Ball;
     private _scoreboardP: ScoreboardP;
-    private _scoreboardGK: ScoreboardGK:
+    private _scoreboardGK: ScoreboardGK;
 
     // Constructor
     constructor() {
@@ -13,18 +13,14 @@ class Game {
         this._scoreboardP = new ScoreboardP('scoreboardP'); 
         this._scoreboardGK = new ScoreboardGK('scoreboardGK');
         this._ball = new Ball('ball', 110, 620);
-        this._player = new Player('player', 0, 280);
+        this._player = new GameItem('player', 0, 280);
 
         window.addEventListener('keyup', this.keyDownHandler);
-        document.addEventListener("click", this.printMousePos);
 
         this.draw();
-
-
     }
     
     // Methods
-
 
     /**
      * See if it is a goal or not.
@@ -75,7 +71,6 @@ class Game {
         }, 600);
     }
 
-
     /**
      * Method to draw all the game items
      */
@@ -124,38 +119,8 @@ class Game {
             this._ball.shoot(300);
             this._keeper.randomCorner();       
             this.saveOrGoal();  
-            setTimeout( () => {
-                this.replaceItem();
-            }, 2000);  
+            this.replaceItem(); 
         }
         this.update();
      }
-
-    /**
-     * Tests with audio after a goal
-     */
-    //  public goalAudio()  {
-    //      let audioGoal = (<HTMLAudioElement>document.getElementById("goalAudio"));
-    //      console.log(audioGoal);
-    //      audioGoal.play();
-    //  }
-
-    //  public goalAudio2() {
-    //     let audioGoal: HTMLAudioElement = document.getElementById("goalAudio"));
-    //     console.log(audioGoal);
-    //     audioGoal.play();
-    //  }
-
-    //  public goalAudio3() {
-    //     let audioGoal = (<HTMLElement>document.getElementById("goalAudio"));
-    //     console.log(audioGoal);
-    //     audioGoal.play();
-    //  }
 }
-
-/**
- * Delay code:
-*       setTimeout( () => {
-        // your code
-        }, 1000); // in ms
- */
