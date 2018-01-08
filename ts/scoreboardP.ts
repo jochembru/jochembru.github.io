@@ -4,8 +4,6 @@ class ScoreboardP extends GameItem {
     // Attributes
     private _scoreP: number
 
-    // Methods
-    
     //constructor
     constructor(name: string) {
         super(name);
@@ -19,6 +17,10 @@ class ScoreboardP extends GameItem {
      */
     public get scoreP(): number {
         return this._scoreP;
+    }
+
+    public get rg(): HTMLElement {
+        return document.getElementById("goalMessage");
     }
     
     // Methods
@@ -57,20 +59,43 @@ class ScoreboardP extends GameItem {
         scoreSpanP.innerHTML = this._scoreP.toString();
     }
 
-    /**
-     * Add 1 to the score of the player
-     */
+    public goal(container: HTMLElement): void {
+        const goalDiv = document.createElement('div');
+        goalDiv.className = ("goalMessage");
+        goalDiv.id = ("goalMessage");
+
+        const goal = document.createElement("p");
+        goal.innerHTML = "GOAL!";
+
+        const click = document.createElement("p");
+        click.innerHTML = "Click on any key to continue."
+
+        goalDiv.appendChild(goal);
+        goalDiv.appendChild(click);
+        container.appendChild(goalDiv);
+
+        console.log("Goal msg");
+
+    }
+
+    public removeGoal() {
+        const rg = document.getElementById("goalMessage");
+        rg.parentNode.removeChild(rg);
+    }
 
     /**
-     * Add 1 to the score of the goalkeeper
+     * Add 1 to the score of the player
      */
     public addScoreP(): void {
         this._scoreP+=1;
         if(this._scoreP >= 5) {
             setTimeout( () => {
+                console.log("You won");
                 alert("Gefeliciteerd, je hebt gewonnen!\nKlik op OK om je score te verbeteren!");
                 location.reload();
             }, 1000);
         }
+        const container = document.getElementById("container");
+        this.goal(container);
     }
 }

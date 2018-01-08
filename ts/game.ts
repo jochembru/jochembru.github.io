@@ -52,20 +52,34 @@ class Game {
         setTimeout( () => {
             const sumRect = (gkRect.right * gkRect.left) / (bRect.right * bRect.left);
             if(sumRect < 1 && sumRect > 0.9 && bRect.top != 919) {
-                console.log("Save!");
-                this._scoreboardGK.addScoreGK();
-                this._scoreboardGK.update();
+                try {
+                    console.log("Save!");
+                    this._scoreboardGK.addScoreGK();
+                    this._scoreboardGK.update();
+                }
+                catch(err) {
+                    console.log("Error. Deze poging telde niet mee.")
+                }
             } 
             else if (bRect.left < 500 || bRect.left > 1300 || bRect.top < 500) {
-                console.log("Miss!");
-                // this._scoreboardGK.addScoreGKMiss();
-                this._scoreboardGK.addScoreGK();
-                this._scoreboardGK.update();
-            } 
+                try {
+                    console.log("Miss!");
+                    this._scoreboardGK.addScoreGK();
+                    this._scoreboardGK.update();
+                } 
+                catch(err) {
+                    console.log("Error. Deze poging telde niet mee.")
+                    }
+            }
             else {
-                console.log("Goal!");
-                this._scoreboardP.addScoreP();
-                this._scoreboardP.update();
+                try {
+                    console.log("Goal!");
+                    this._scoreboardP.addScoreP();
+                    this._scoreboardP.update();
+                }
+                catch(err) {
+                    console.log("Error. Deze poging telde niet mee.")
+                }
             }
         }, 800);
         }, 600);
@@ -97,6 +111,21 @@ class Game {
         this._ball.replaceB();
     }
     
+    public goalMessage() {
+        if (this._scoreboardP.rg === null) {
+            ;
+        } else {
+            this._scoreboardP.removeGoal();
+        }
+    }
+
+    public noGoalMessage() {
+        if (this._scoreboardGK.rs === null) {
+            ;
+        } else {
+            this._scoreboardGK.removeNoGoal();
+        }
+    }
     /**
      * Events
      * - Keycode 37 --> left arrow
@@ -121,6 +150,8 @@ class Game {
             this.saveOrGoal();  
             this.replaceItem(); 
         }
+        this.noGoalMessage();
+        this.goalMessage();
         this.update();
      }
 }

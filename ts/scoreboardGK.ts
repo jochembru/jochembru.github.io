@@ -3,8 +3,6 @@
 class ScoreboardGK extends GameItem {
     // Attributes
     private _scoreGK: number
-
-    // Methods
     
     //constructor
     constructor(name: string) {
@@ -12,7 +10,7 @@ class ScoreboardGK extends GameItem {
         this._scoreGK = 0;
     }
 
-    // // Getters / setters
+    // Getters / setters
 
     /**
      * Get the score of the player
@@ -20,6 +18,9 @@ class ScoreboardGK extends GameItem {
     
     public get scoreGK(): number {
         return this._scoreGK;
+    }
+    public get rs(): HTMLElement {
+        return document.getElementById("saveMessage");
     }
 
     // Methods
@@ -60,6 +61,31 @@ class ScoreboardGK extends GameItem {
         scoreSpanGK.innerHTML = this._scoreGK.toString();
     }
 
+    public noGoal(container: HTMLElement): void {
+        const saveDiv = document.createElement('div');
+        saveDiv.className = ("noGoalMessage");
+        saveDiv.id = ("noGoalMessage");
+
+        const noGoal = document.createElement("p");
+        noGoal.innerHTML = "NO GOAL!";
+
+        const click = document.createElement("p");
+        click.innerHTML = "Click on any key to continue."
+
+        saveDiv.appendChild(noGoal);
+        saveDiv.appendChild(click);
+        container.appendChild(saveDiv);
+
+        console.log("Save msg");
+
+
+    }
+
+    public removeNoGoal() {
+        const ngm = document.getElementById("noGoalMessage");
+        ngm.parentNode.removeChild(ngm);
+    }
+
     /**
      * Add 1 to the score of the goalkeeper
      */
@@ -68,9 +94,12 @@ class ScoreboardGK extends GameItem {
         this._scoreGK+=1;
         if(this._scoreGK >= 5) {
             setTimeout( () => {
+                console.log("Keeper won")
                 alert("Jammer, je hebt verloren! \nKlik op OK om het opnieuw te proberen!");
                 location.reload();
             }, 1000);
         }
+        const container = document.getElementById("container");
+        this.noGoal(container);
     }
 }

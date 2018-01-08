@@ -14,6 +14,7 @@ class Ball extends GameItem {
      * @param yPosition - The y position of the ball (in the goal)
      */
     public shoot(yPosition: number) : void {
+        console.log("Shoot!")
         this._yPos -= yPosition;
         this._element.classList.remove("moving");
         this._element.classList.add("shooting");

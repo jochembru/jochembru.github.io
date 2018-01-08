@@ -3,6 +3,7 @@ let app;
     let init = function () {
         app = new Game();
         setTimeout(() => {
+            console.log("Welkom alert");
             alert('Welkom bij mijn spel. Het doel van het spel is om eerder dan de keeper vijf punten te halen. \n\nControls: \n- Beweeg door middel van de pijltjes toetsen. \n- Schiet door middel van de spatiebalk. \n- Gebruik vervolgens na het schieten het pijltje naar beneden om opnieuw te schieten. \n \n Veel plezier!');
         }, 1000);
     };
@@ -53,6 +54,7 @@ class Ball extends GameItem {
         super(name, xPosition, yPosition);
     }
     shoot(yPosition) {
+        console.log("Shoot!");
         this._yPos -= yPosition;
         this._element.classList.remove("moving");
         this._element.classList.add("shooting");
@@ -84,6 +86,8 @@ class Game {
                 this.saveOrGoal();
                 this.replaceItem();
             }
+            this.noGoalMessage();
+            this.goalMessage();
             this.update();
         };
         this._keeper = new Keeper("goalkeeper", 0, 540);
@@ -101,19 +105,34 @@ class Game {
             setTimeout(() => {
                 const sumRect = (gkRect.right * gkRect.left) / (bRect.right * bRect.left);
                 if (sumRect < 1 && sumRect > 0.9 && bRect.top != 919) {
-                    console.log("Save!");
-                    this._scoreboardGK.addScoreGK();
-                    this._scoreboardGK.update();
+                    try {
+                        console.log("Save!");
+                        this._scoreboardGK.addScoreGK();
+                        this._scoreboardGK.update();
+                    }
+                    catch (err) {
+                        console.log("Error. Deze poging telde niet mee.");
+                    }
                 }
                 else if (bRect.left < 500 || bRect.left > 1300 || bRect.top < 500) {
-                    console.log("Miss!");
-                    this._scoreboardGK.addScoreGK();
-                    this._scoreboardGK.update();
+                    try {
+                        console.log("Miss!");
+                        this._scoreboardGK.addScoreGK();
+                        this._scoreboardGK.update();
+                    }
+                    catch (err) {
+                        console.log("Error. Deze poging telde niet mee.");
+                    }
                 }
                 else {
-                    console.log("Goal!");
-                    this._scoreboardP.addScoreP();
-                    this._scoreboardP.update();
+                    try {
+                        console.log("Goal!");
+                        this._scoreboardP.addScoreP();
+                        this._scoreboardP.update();
+                    }
+                    catch (err) {
+                        console.log("Error. Deze poging telde niet mee.");
+                    }
                 }
             }, 800);
         }, 600);
@@ -134,6 +153,22 @@ class Game {
         this._player.replaceItem();
         this._keeper.replaceItem();
         this._ball.replaceB();
+    }
+    goalMessage() {
+        if (this._scoreboardP.rg === null) {
+            ;
+        }
+        else {
+            this._scoreboardP.removeGoal();
+        }
+    }
+    noGoalMessage() {
+        if (this._scoreboardGK.rs === null) {
+            ;
+        }
+        else {
+            this._scoreboardGK.removeNoGoal();
+        }
     }
 }
 class Keeper extends GameItem {
@@ -173,6 +208,9 @@ class ScoreboardGK extends GameItem {
     get scoreGK() {
         return this._scoreGK;
     }
+    get rs() {
+        return document.getElementById("saveMessage");
+    }
     draw(container) {
         this._element = document.createElement('div');
         this._element.className = this._name;
@@ -189,14 +227,34 @@ class ScoreboardGK extends GameItem {
         const scoreSpanGK = this._element.childNodes[0].childNodes[1];
         scoreSpanGK.innerHTML = this._scoreGK.toString();
     }
+    noGoal(container) {
+        const saveDiv = document.createElement('div');
+        saveDiv.className = ("noGoalMessage");
+        saveDiv.id = ("noGoalMessage");
+        const noGoal = document.createElement("p");
+        noGoal.innerHTML = "NO GOAL!";
+        const click = document.createElement("p");
+        click.innerHTML = "Click on any key to continue.";
+        saveDiv.appendChild(noGoal);
+        saveDiv.appendChild(click);
+        container.appendChild(saveDiv);
+        console.log("Save msg");
+    }
+    removeNoGoal() {
+        const ngm = document.getElementById("noGoalMessage");
+        ngm.parentNode.removeChild(ngm);
+    }
     addScoreGK() {
         this._scoreGK += 1;
         if (this._scoreGK >= 5) {
             setTimeout(() => {
+                console.log("Keeper won");
                 alert("Jammer, je hebt verloren! \nKlik op OK om het opnieuw te proberen!");
                 location.reload();
             }, 1000);
         }
+        const container = document.getElementById("container");
+        this.noGoal(container);
     }
 }
 class ScoreboardP extends GameItem {
@@ -206,6 +264,9 @@ class ScoreboardP extends GameItem {
     }
     get scoreP() {
         return this._scoreP;
+    }
+    get rg() {
+        return document.getElementById("goalMessage");
     }
     draw(container) {
         this._element = document.createElement('div');
@@ -223,14 +284,34 @@ class ScoreboardP extends GameItem {
         const scoreSpanP = this._element.childNodes[0].childNodes[1];
         scoreSpanP.innerHTML = this._scoreP.toString();
     }
+    goal(container) {
+        const goalDiv = document.createElement('div');
+        goalDiv.className = ("goalMessage");
+        goalDiv.id = ("goalMessage");
+        const goal = document.createElement("p");
+        goal.innerHTML = "GOAL!";
+        const click = document.createElement("p");
+        click.innerHTML = "Click on any key to continue.";
+        goalDiv.appendChild(goal);
+        goalDiv.appendChild(click);
+        container.appendChild(goalDiv);
+        console.log("Goal msg");
+    }
+    removeGoal() {
+        const rg = document.getElementById("goalMessage");
+        rg.parentNode.removeChild(rg);
+    }
     addScoreP() {
         this._scoreP += 1;
         if (this._scoreP >= 5) {
             setTimeout(() => {
+                console.log("You won");
                 alert("Gefeliciteerd, je hebt gewonnen!\nKlik op OK om je score te verbeteren!");
                 location.reload();
             }, 1000);
         }
+        const container = document.getElementById("container");
+        this.goal(container);
     }
 }
 //# sourceMappingURL=app.js.map
