@@ -75,7 +75,7 @@ class ScoreboardP extends GameItem {
         goal.innerHTML = "GOAL!";
 
         const click = document.createElement("p");
-        click.innerHTML = "Press ESC to continue."
+        click.innerHTML = "Press ESC to continue"
 
         goalDiv.appendChild(goal);
         goalDiv.appendChild(click);
@@ -89,7 +89,7 @@ class ScoreboardP extends GameItem {
      * After pressing any key, the message from goal() will disappear
      */
 
-    public removeGoal() {
+    public removeGoal(): void {
         const rg = document.getElementById("goalMessage");
         rg.parentNode.removeChild(rg);
     }
@@ -97,7 +97,7 @@ class ScoreboardP extends GameItem {
     /**
      * Sound when the player scores
      */
-    public goalSound() {
+    public goalSound(): void {
         const goalSound = document.getElementById("audioGoal");
         goalSound.play();
     }
@@ -105,7 +105,7 @@ class ScoreboardP extends GameItem {
     /**
      * Sound when the player wins
      */
-    public winSound() {
+    public winSound(): void {
         const winSound = document.getElementById("audioWin");
         winSound.play();
     }

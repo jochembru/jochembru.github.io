@@ -77,7 +77,7 @@ class ScoreboardGK extends GameItem {
         noGoal.innerHTML = "NO GOAL!";
 
         const click = document.createElement("p");
-        click.innerHTML = "Press ESC to continue."
+        click.innerHTML = "Press ESC to continue"
 
         saveDiv.appendChild(noGoal);
         saveDiv.appendChild(click);
@@ -89,7 +89,7 @@ class ScoreboardGK extends GameItem {
     /**
      * After pressing any key, the message from noGoal() will disappear
      */
-    public removeNoGoal() {
+    public removeNoGoal(): void {
         const ngm = document.getElementById("noGoalMessage");
         ngm.parentNode.removeChild(ngm);
     }
@@ -97,16 +97,15 @@ class ScoreboardGK extends GameItem {
     /**
      * Sound when the player misses.
      */
-    public missSound() {
+    public missSound(): void {
         const misser = document.getElementById("audioMiss");
         misser.play();
     }
 
-    // Kan nog iets harder
     /**
      * Sound when the game is over and the player lost.
      */
-    public lossSound() {
+    public lossSound(): void {
         const lossSound = document.getElementById("audioLoss");
         lossSound.play();
     }

@@ -234,7 +234,7 @@ class ScoreboardGK extends GameItem {
         const noGoal = document.createElement("p");
         noGoal.innerHTML = "NO GOAL!";
         const click = document.createElement("p");
-        click.innerHTML = "Press ESC to continue.";
+        click.innerHTML = "Press ESC to continue";
         saveDiv.appendChild(noGoal);
         saveDiv.appendChild(click);
         container.appendChild(saveDiv);
@@ -301,7 +301,7 @@ class ScoreboardP extends GameItem {
         const goal = document.createElement("p");
         goal.innerHTML = "GOAL!";
         const click = document.createElement("p");
-        click.innerHTML = "Press ESC to continue.";
+        click.innerHTML = "Press ESC to continue";
         goalDiv.appendChild(goal);
         goalDiv.appendChild(click);
         container.appendChild(goalDiv);
