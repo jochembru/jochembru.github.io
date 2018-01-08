@@ -234,7 +234,7 @@ class ScoreboardGK extends GameItem {
         const noGoal = document.createElement("p");
         noGoal.innerHTML = "NO GOAL!";
         const click = document.createElement("p");
-        click.innerHTML = "Click on any key to continue.";
+        click.innerHTML = "Press any key to continue.";
         saveDiv.appendChild(noGoal);
         saveDiv.appendChild(click);
         container.appendChild(saveDiv);
@@ -249,8 +249,8 @@ class ScoreboardGK extends GameItem {
         lossSound.play();
     }
     missSound() {
-        const missSound = document.getElementById("audioMiss");
-        missSound.play();
+        const misser = document.getElementById("audioMiss");
+        misser.play();
     }
     addScoreGK() {
         this._scoreGK += 1;
@@ -301,7 +301,7 @@ class ScoreboardP extends GameItem {
         const goal = document.createElement("p");
         goal.innerHTML = "GOAL!";
         const click = document.createElement("p");
-        click.innerHTML = "Click on any key to continue.";
+        click.innerHTML = "Press any key to continue.";
         goalDiv.appendChild(goal);
         goalDiv.appendChild(click);
         container.appendChild(goalDiv);

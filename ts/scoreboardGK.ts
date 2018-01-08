@@ -70,7 +70,7 @@ class ScoreboardGK extends GameItem {
         noGoal.innerHTML = "NO GOAL!";
 
         const click = document.createElement("p");
-        click.innerHTML = "Click on any key to continue."
+        click.innerHTML = "Press any key to continue."
 
         saveDiv.appendChild(noGoal);
         saveDiv.appendChild(click);
@@ -91,8 +91,8 @@ class ScoreboardGK extends GameItem {
     }
 
     public missSound() {
-        const missSound = document.getElementById("audioMiss");
-        missSound.play();
+        const misser = document.getElementById("audioMiss");
+        misser.play();
     }
 
     /**

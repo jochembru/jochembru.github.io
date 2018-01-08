@@ -68,7 +68,7 @@ class ScoreboardP extends GameItem {
         goal.innerHTML = "GOAL!";
 
         const click = document.createElement("p");
-        click.innerHTML = "Click on any key to continue."
+        click.innerHTML = "Press any key to continue."
 
         goalDiv.appendChild(goal);
         goalDiv.appendChild(click);
