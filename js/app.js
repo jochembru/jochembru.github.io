@@ -244,15 +244,25 @@ class ScoreboardGK extends GameItem {
         const ngm = document.getElementById("noGoalMessage");
         ngm.parentNode.removeChild(ngm);
     }
+    lossSound() {
+        const lossSound = document.getElementById("audioLoss");
+        lossSound.play();
+    }
+    missSound() {
+        const missSound = document.getElementById("audioMiss");
+        missSound.play();
+    }
     addScoreGK() {
         this._scoreGK += 1;
         if (this._scoreGK >= 5) {
+            this.lossSound();
             setTimeout(() => {
                 console.log("Keeper won");
                 alert("Jammer, je hebt verloren! \nKlik op OK om het opnieuw te proberen!");
                 location.reload();
             }, 1000);
         }
+        this.missSound();
         const container = document.getElementById("container");
         this.noGoal(container);
     }
@@ -301,9 +311,18 @@ class ScoreboardP extends GameItem {
         const rg = document.getElementById("goalMessage");
         rg.parentNode.removeChild(rg);
     }
+    winSound() {
+        const winSound = document.getElementById("audioWin");
+        winSound.play();
+    }
+    goalSound() {
+        const goalSound = document.getElementById("audioGoal");
+        goalSound.play();
+    }
     addScoreP() {
         this._scoreP += 1;
         if (this._scoreP >= 5) {
+            this.winSound();
             setTimeout(() => {
                 console.log("You won");
                 alert("Gefeliciteerd, je hebt gewonnen!\nKlik op OK om je score te verbeteren!");
@@ -312,6 +331,7 @@ class ScoreboardP extends GameItem {
         }
         const container = document.getElementById("container");
         this.goal(container);
+        this.goalSound();
     }
 }
 //# sourceMappingURL=app.js.map

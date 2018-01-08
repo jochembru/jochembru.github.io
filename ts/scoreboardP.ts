@@ -83,12 +83,23 @@ class ScoreboardP extends GameItem {
         rg.parentNode.removeChild(rg);
     }
 
+    public winSound() {
+        const winSound = document.getElementById("audioWin");
+        winSound.play();
+    }
+    public goalSound() {
+        const goalSound = document.getElementById("audioGoal");
+        goalSound.play();
+    }
+
+
     /**
      * Add 1 to the score of the player
      */
     public addScoreP(): void {
         this._scoreP+=1;
         if(this._scoreP >= 5) {
+            this.winSound();
             setTimeout( () => {
                 console.log("You won");
                 alert("Gefeliciteerd, je hebt gewonnen!\nKlik op OK om je score te verbeteren!");
@@ -97,5 +108,6 @@ class ScoreboardP extends GameItem {
         }
         const container = document.getElementById("container");
         this.goal(container);
+        this.goalSound();
     }
 }

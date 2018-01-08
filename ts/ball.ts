@@ -15,9 +15,9 @@ class Ball extends GameItem {
      */
     public shoot(yPosition: number) : void {
         console.log("Shoot!")
-        this._yPos -= yPosition;
-        this._element.classList.remove("moving");
-        this._element.classList.add("shooting");
+            this._yPos -= yPosition;
+            this._element.classList.remove("moving");
+            this._element.classList.add("shooting");
     }
 
     /**

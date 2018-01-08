@@ -77,13 +77,22 @@ class ScoreboardGK extends GameItem {
         container.appendChild(saveDiv);
 
         console.log("no goal message");
-
-
     }
 
     public removeNoGoal() {
         const ngm = document.getElementById("noGoalMessage");
         ngm.parentNode.removeChild(ngm);
+    }
+
+    // Kan nog iets harder
+    public lossSound() {
+        const lossSound = document.getElementById("audioLoss");
+        lossSound.play();
+    }
+
+    public missSound() {
+        const missSound = document.getElementById("audioMiss");
+        missSound.play();
     }
 
     /**
@@ -93,12 +102,14 @@ class ScoreboardGK extends GameItem {
     public addScoreGK(): void {
         this._scoreGK+=1;
         if(this._scoreGK >= 5) {
+            this.lossSound();
             setTimeout( () => {
                 console.log("Keeper won")
                 alert("Jammer, je hebt verloren! \nKlik op OK om het opnieuw te proberen!");
                 location.reload();
             }, 1000);
         }
+        this.missSound();
         const container = document.getElementById("container");
         this.noGoal(container);
     }
