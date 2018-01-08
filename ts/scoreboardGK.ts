@@ -19,8 +19,8 @@ class ScoreboardGK extends GameItem {
     public get scoreGK(): number {
         return this._scoreGK;
     }
-    public get rs(): HTMLElement {
-        return document.getElementById("saveMessage");
+    public get ngm(): HTMLElement {
+        return document.getElementById("noGoalMessage");
     }
 
     // Methods
@@ -76,7 +76,7 @@ class ScoreboardGK extends GameItem {
         saveDiv.appendChild(click);
         container.appendChild(saveDiv);
 
-        console.log("Save msg");
+        console.log("no goal message");
 
 
     }

@@ -77,6 +77,6 @@ class GameItem {
     public replaceItem(): void {
         setTimeout( () => {
         this._xPos = 0;
-        }, 2000);
+        }, 1000);
 }
 }

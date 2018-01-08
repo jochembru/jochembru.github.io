@@ -120,7 +120,7 @@ class Game {
     }
 
     public noGoalMessage() {
-        if (this._scoreboardGK.rs === null) {
+        if (this._scoreboardGK.ngm === null) {
             ;
         } else {
             this._scoreboardGK.removeNoGoal();

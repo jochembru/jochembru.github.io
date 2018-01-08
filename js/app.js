@@ -46,7 +46,7 @@ class GameItem {
     replaceItem() {
         setTimeout(() => {
             this._xPos = 0;
-        }, 2000);
+        }, 1000);
     }
 }
 class Ball extends GameItem {
@@ -65,7 +65,7 @@ class Ball extends GameItem {
             this._xPos = 110;
             this._element.classList.remove("shooting");
             this._element.classList.add("moving");
-        }, 2000);
+        }, 1000);
     }
 }
 class Game {
@@ -163,7 +163,7 @@ class Game {
         }
     }
     noGoalMessage() {
-        if (this._scoreboardGK.rs === null) {
+        if (this._scoreboardGK.ngm === null) {
             ;
         }
         else {
@@ -208,8 +208,8 @@ class ScoreboardGK extends GameItem {
     get scoreGK() {
         return this._scoreGK;
     }
-    get rs() {
-        return document.getElementById("saveMessage");
+    get ngm() {
+        return document.getElementById("noGoalMessage");
     }
     draw(container) {
         this._element = document.createElement('div');
@@ -238,7 +238,7 @@ class ScoreboardGK extends GameItem {
         saveDiv.appendChild(noGoal);
         saveDiv.appendChild(click);
         container.appendChild(saveDiv);
-        console.log("Save msg");
+        console.log("no goal message");
     }
     removeNoGoal() {
         const ngm = document.getElementById("noGoalMessage");
@@ -295,7 +295,7 @@ class ScoreboardP extends GameItem {
         goalDiv.appendChild(goal);
         goalDiv.appendChild(click);
         container.appendChild(goalDiv);
-        console.log("Goal msg");
+        console.log("Goal message");
     }
     removeGoal() {
         const rg = document.getElementById("goalMessage");

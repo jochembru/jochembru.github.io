@@ -29,7 +29,7 @@ class Ball extends GameItem {
             this._xPos = 110;
             this._element.classList.remove("shooting");
             this._element.classList.add("moving")
-            }, 2000);
+            }, 1000);
 
         }
     }

@@ -74,7 +74,7 @@ class ScoreboardP extends GameItem {
         goalDiv.appendChild(click);
         container.appendChild(goalDiv);
 
-        console.log("Goal msg");
+        console.log("Goal message");
 
     }
 
