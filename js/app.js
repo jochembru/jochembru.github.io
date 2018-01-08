@@ -4,7 +4,7 @@ let app;
         app = new Game();
         setTimeout(() => {
             console.log("Welkom alert");
-            alert('Welkom bij mijn spel. Het doel van het spel is om eerder dan de keeper vijf punten te halen. \n\nControls: \n- Beweeg door middel van de pijltjes toetsen. \n- Schiet door middel van de spatiebalk. \n- Gebruik vervolgens na het schieten het pijltje naar beneden om opnieuw te schieten. \n \n Veel plezier!');
+            alert('Welkom bij deze vrije trappen game! Het doel van de game is om eerder dan de keeper vijf punten te halen. \n\nControls: \n- Beweeg door middel van de pijltjes toetsen. \n- Schiet door middel van de spatiebalk.\n \n Veel plezier!');
         }, 1000);
     };
     window.addEventListener('load', init);
@@ -155,7 +155,7 @@ class Game {
         this._ball.replaceB();
     }
     goalMessage() {
-        if (this._scoreboardP.rg === null) {
+        if (this._scoreboardP.gm === null) {
             ;
         }
         else {
@@ -234,7 +234,7 @@ class ScoreboardGK extends GameItem {
         const noGoal = document.createElement("p");
         noGoal.innerHTML = "NO GOAL!";
         const click = document.createElement("p");
-        click.innerHTML = "Press any key to continue.";
+        click.innerHTML = "Press ESC to continue.";
         saveDiv.appendChild(noGoal);
         saveDiv.appendChild(click);
         container.appendChild(saveDiv);
@@ -244,13 +244,13 @@ class ScoreboardGK extends GameItem {
         const ngm = document.getElementById("noGoalMessage");
         ngm.parentNode.removeChild(ngm);
     }
-    lossSound() {
-        const lossSound = document.getElementById("audioLoss");
-        lossSound.play();
-    }
     missSound() {
         const misser = document.getElementById("audioMiss");
         misser.play();
+    }
+    lossSound() {
+        const lossSound = document.getElementById("audioLoss");
+        lossSound.play();
     }
     addScoreGK() {
         this._scoreGK += 1;
@@ -275,7 +275,7 @@ class ScoreboardP extends GameItem {
     get scoreP() {
         return this._scoreP;
     }
-    get rg() {
+    get gm() {
         return document.getElementById("goalMessage");
     }
     draw(container) {
@@ -301,7 +301,7 @@ class ScoreboardP extends GameItem {
         const goal = document.createElement("p");
         goal.innerHTML = "GOAL!";
         const click = document.createElement("p");
-        click.innerHTML = "Press any key to continue.";
+        click.innerHTML = "Press ESC to continue.";
         goalDiv.appendChild(goal);
         goalDiv.appendChild(click);
         container.appendChild(goalDiv);
@@ -311,13 +311,13 @@ class ScoreboardP extends GameItem {
         const rg = document.getElementById("goalMessage");
         rg.parentNode.removeChild(rg);
     }
-    winSound() {
-        const winSound = document.getElementById("audioWin");
-        winSound.play();
-    }
     goalSound() {
         const goalSound = document.getElementById("audioGoal");
         goalSound.play();
+    }
+    winSound() {
+        const winSound = document.getElementById("audioWin");
+        winSound.play();
     }
     addScoreP() {
         this._scoreP += 1;
@@ -329,9 +329,9 @@ class ScoreboardP extends GameItem {
                 location.reload();
             }, 1000);
         }
+        this.goalSound();
         const container = document.getElementById("container");
         this.goal(container);
-        this.goalSound();
     }
 }
 //# sourceMappingURL=app.js.map

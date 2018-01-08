@@ -74,6 +74,11 @@ class GameItem {
         this._element.classList.add("moving");
     }
 
+    /**
+     * Replacing game item to begin position after pressing any key
+     * (except spacebar)
+     * Pressing spacebar will break the game..
+     */
     public replaceItem(): void {
         setTimeout( () => {
         this._xPos = 0;

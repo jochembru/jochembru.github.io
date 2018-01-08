@@ -1,7 +1,6 @@
 /// <reference path="gameItem.ts" />
 
 class Ball extends GameItem {
-    // Attributes
 
     // Constructor
     constructor(name: string, xPosition: number = 0, yPosition: number = 0) {
@@ -21,7 +20,9 @@ class Ball extends GameItem {
     }
 
     /**
-     * Description
+     * Replacing the ball to begin position after pressing any key
+     * (except spacebar)
+     * Pressing spacebar will break the game..
      */
     public replaceB(): void {
         setTimeout( () => {

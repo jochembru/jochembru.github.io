@@ -19,7 +19,10 @@ class ScoreboardP extends GameItem {
         return this._scoreP;
     }
 
-    public get rg(): HTMLElement {
+    /**
+     * Get the goal message
+     */
+    public get gm(): HTMLElement {
         return document.getElementById("goalMessage");
     }
     
@@ -59,6 +62,10 @@ class ScoreboardP extends GameItem {
         scoreSpanP.innerHTML = this._scoreP.toString();
     }
 
+    /**
+     * When the players scores, there will appear a message.
+     * @param container - The name of the div were the message will be placed.
+     */
     public goal(container: HTMLElement): void {
         const goalDiv = document.createElement('div');
         goalDiv.className = ("goalMessage");
@@ -68,7 +75,7 @@ class ScoreboardP extends GameItem {
         goal.innerHTML = "GOAL!";
 
         const click = document.createElement("p");
-        click.innerHTML = "Press any key to continue."
+        click.innerHTML = "Press ESC to continue."
 
         goalDiv.appendChild(goal);
         goalDiv.appendChild(click);
@@ -77,24 +84,37 @@ class ScoreboardP extends GameItem {
         console.log("Goal message");
 
     }
+    
+    /**
+     * After pressing any key, the message from goal() will disappear
+     */
 
     public removeGoal() {
         const rg = document.getElementById("goalMessage");
         rg.parentNode.removeChild(rg);
     }
 
-    public winSound() {
-        const winSound = document.getElementById("audioWin");
-        winSound.play();
-    }
+    /**
+     * Sound when the player scores
+     */
     public goalSound() {
         const goalSound = document.getElementById("audioGoal");
         goalSound.play();
     }
 
+    /**
+     * Sound when the player wins
+     */
+    public winSound() {
+        const winSound = document.getElementById("audioWin");
+        winSound.play();
+    }
+
 
     /**
-     * Add 1 to the score of the player
+     * Add score if the player scores.
+     * If the player has more than 4 points. The game is over
+     * and the player wins.
      */
     public addScoreP(): void {
         this._scoreP+=1;
@@ -106,8 +126,8 @@ class ScoreboardP extends GameItem {
                 location.reload();
             }, 1000);
         }
+        this.goalSound();
         const container = document.getElementById("container");
         this.goal(container);
-        this.goalSound();
     }
 }

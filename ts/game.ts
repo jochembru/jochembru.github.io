@@ -105,19 +105,30 @@ class Game {
         this._keeper.update();
     }
 
+    /**
+     * Method to replace all the game items
+     */
     public replaceItem(): void {
         this._player.replaceItem();
         this._keeper.replaceItem();
         this._ball.replaceB();
     }
     
+    /**
+     * Message that will appear after scoring
+     */
     public goalMessage() {
-        if (this._scoreboardP.rg === null) {
+        if (this._scoreboardP.gm === null) {
             ;
         } else {
             this._scoreboardP.removeGoal();
         }
     }
+    
+    /**
+     * Message that will apear after not scoring
+     * (miss or save)
+     */
 
     public noGoalMessage() {
         if (this._scoreboardGK.ngm === null) {
