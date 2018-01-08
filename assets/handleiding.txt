@@ -1,0 +1,9 @@
+Het doel is om eerder vijf punten te halen dan de keeper.
+Score je, dan krijg je 1 punt.
+Mis je of redt de keeper, dan krijgt de keeper 1 punt.
+
+Controls:
+
+- Door middel van de pijltjes toetsen 'links' & 'rechts' kun je bewegen.
+- Door middel van de spatiebalk kun je schieten.
+- Klik na het schieten op de ESC knop om het opnieuw te proberen.
