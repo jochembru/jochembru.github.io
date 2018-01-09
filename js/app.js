@@ -4,7 +4,7 @@ let app;
         app = new Game();
         setTimeout(() => {
             console.log("Welkom alert");
-            alert('Welkom bij deze vrije trappen game! Het doel van de game is om eerder dan de keeper vijf punten te halen. \n\nControls: \n- Beweeg door middel van de pijltjes toetsen. \n- Schiet door middel van de spatiebalk.\n \n Veel plezier!');
+            alert("Welkom bij deze vrije trappen game! Het doel van de game is om eerder dan de keeper vijf punten te halen. \n\nControls: \n- Beweeg door middel van de pijltjes toetsen. \n- Schiet door middel van de spatiebalk.\n\nTip:\n- Ziet de game er raar uit? Probeer de toetsencombinaties 'ctrl +' en/of 'ctrl -' voor het in- en/of uitzoomen. \n\n Veel plezier!");
         }, 1000);
     };
     window.addEventListener('load', init);
